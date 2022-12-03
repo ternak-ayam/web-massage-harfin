@@ -4,10 +4,15 @@
     @include('layouts.navbar')
     <header>
         <div class="p-12 lg:text-center h-[20rem] bg-[#0BA2D4] text-gray-700 relative flex overflow-hidden">
-            <div class="lg:w-1/3 w-full lg:ml-[20rem] text-white flex items-center text-sm lg:text-xl"><marquee behavior="" direction="">Selamat datang( nama customer) di JlifePro. Silahkan pilih layanan jasa yang anda sukai</marquee></div>
-            <img class="absolute w-[40rem] lg:right-[20rem]  lg:top-0 right-[-5rem] top-0"  src="{{ asset('assets/spg.png') }}" alt="">
+            <div class="lg:w-1/3 w-full lg:ml-[20rem] text-white flex items-center text-sm lg:text-xl">
+                <marquee behavior="" direction="">Selamat datang( nama customer) di JlifePro. Silahkan pilih layanan
+                    jasa yang anda sukai
+                </marquee>
+            </div>
+            <img class="absolute w-[40rem] lg:right-[20rem]  lg:top-0 right-[-5rem] top-0"
+                 src="{{ asset('assets/spg.png') }}" alt="">
         </div>
-    </header >
+    </header>
     <div class="container flex justify-center m-auto mt-8 mb-8  ">
         <div class="marquee">
             <ul class="marquee-content">
@@ -22,7 +27,7 @@
 
                     </a>
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black  absolute bottom-0 bg-white p-2 rounded">
-                        Message 1</h5>
+                        Massage 1</h5>
                 </li>
                 <li>
                     <a href="#"
@@ -62,7 +67,7 @@
             </ul>
         </div>
     </div>
-    <div class="border-dashed border-b-4 border-sky-500 p-2 mt-4  pb-4">
+    <div class="border-dashed border-b border-sky-500 p-2 mt-4  pb-4">
         <div class="container m-auto">
             <h1 class="text-3xl font-semibold">Top Jasa</h1>
         </div>
@@ -83,7 +88,7 @@
 
                     </a>
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black  absolute bottom-0 bg-white p-2 rounded">
-                        Message 2</h5>
+                        Massage 2</h5>
                 </li>
                 <li>
                     <a href="#"
@@ -130,7 +135,7 @@
 
                     </a>
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black  absolute bottom-0 bg-white p-2 rounded">
-                        Message 2</h5>
+                        Massage 2</h5>
                 </li>
                 <li>
                     <a href="#"
@@ -171,12 +176,12 @@
         </div>
     </div>
 
-    <div class="border-dashed border-b-4 border-sky-500 p-2 mt-8 pb-4">
+    <div class="border-dashed border-b border-sky-500 p-2 mt-8 pb-4">
         <div class="container m-auto">
             <h1 class="text-3xl font-semibold">Hotspot</h1>
         </div>
     </div>
-    <div class="container m-auto mt-4 mb-[8rem] flex justify-center">
+    <div class="container m-auto mt-4 mb-[2rem] flex justify-center">
         <div class="marquee">
             <ul class="marquee-content">
                 <li>
@@ -190,7 +195,7 @@
 
                     </a>
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black  absolute bottom-0 bg-white p-2 rounded">
-                        Message 2</h5>
+                        Massage 2</h5>
                 </li>
                 <li>
                     <a href="#"
@@ -237,7 +242,7 @@
 
                     </a>
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black  absolute bottom-0 bg-white p-2 rounded">
-                        Message 2</h5>
+                        Massage 2</h5>
                 </li>
                 <li>
                     <a href="#"
@@ -276,6 +281,14 @@
 
             </ul>
         </div>
-        @include('layouts.navbottom')
     </div>
+    <div class="container mx-auto px-6 mb-24 pt-8 text-center">
+        <form action="">
+            <div class="mx-auto max-w-lg">
+                <h1 class="text-3xl text-gray-800 lg:text-4xl"> <span class="font-bold">Ayo bergabung</span> <br> <span class="font-light">menjadi mitra kami</span></h1>
+                @include('components.button.primary-button', ['title' => 'Daftar mitra', 'type' => 'submit'])
+            </div>
+        </form>
+    </div>
+    @include('layouts.navbottom')
 @endsection
