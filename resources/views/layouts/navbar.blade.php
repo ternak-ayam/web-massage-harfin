@@ -6,10 +6,17 @@
                      class="mr-3 h-6 lg:scale-[200%] scale-[250%] sm:h-9 ml-8 lg:ml-0"/>
             </a>
 
-            <a href="{{ route('pemesanan.index') }}" class="justify-center text-center">
-                <i class="fa-solid fa-bag-shopping text-white"></i>
-                <span class="tab block text-xs text-white">Pemesanan</span>
-            </a>
+            @auth
+                <a href="{{ route('pemesanan.index') }}" class="justify-center text-center">
+                    <i class="fa-solid fa-bag-shopping text-white"></i>
+                    <span class="tab block text-xs text-white">Pemesanan</span>
+                </a>
+            @else
+                <a href="{{ route('login') }}" class="justify-center text-center">
+                    <i class="fa-solid fa-right-to-bracket text-white"></i>
+                    <span class="tab block text-xs text-white">Login</span>
+                </a>
+            @endauth
         </div>
     </nav>
 </header>

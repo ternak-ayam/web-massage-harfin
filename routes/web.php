@@ -17,3 +17,5 @@ Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index'])->
 Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
 Route::get('/pesanan', [\App\Http\Controllers\PesananController::class, 'index'])->name('pesanan.index');
 Route::get('/pemesanan', [\App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan.index');
+
+Auth::routes();

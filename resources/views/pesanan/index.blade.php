@@ -63,8 +63,8 @@
                 </div>
             </div>
         </div>
-        <div class="mt-2 lg:ml-1 ml-2 bg-blu-200">
-            <h1 class="text-3xl font-semibold py-2">Tambahan Layanan Jasa (opsional ) </h1>
+        <div class="mt-8 lg:ml-1 ml-2 bg-blu-200">
+            <h1 class="text-3xl font-semibold py-2">Tambahan Layanan Jasa (opsional) </h1>
             <h2 class="mb-2">Pilih Durasi Pengerjaan</h2>
         </div>
         <div class="mt-2">
@@ -111,117 +111,47 @@
                     </div>
                 </div>
             </div>
-            <form action="" class="mt-2 pl-2">
-                <div class="my-2">
-                    <label for="" class="font-semibold">Jenis Kelamin</label>
-                    <div class="flex items-center mb-4">
-                        <input id="default-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox"
-                               class="ml-2 text-sm font-medium text-gray-900 dark:text-black-300">Pria</label>
+            <form action="" class="mt-2 pl-2 mb-24">
+                <div class="md:w-1/2">
+                    <div class="my-2">
+                        <label for="" class="font-semibold">Jenis Kelamin</label>
+                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Pria', 'name' => 'jenis_kelamin', 'id' => 'pria', 'value' => 1])
+                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Wanita', 'name' => 'jenis_kelamin', 'id' => 'wanita', 'value' => 0])
                     </div>
-                    <div class="flex items-center">
-                        <input checked id="checked-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checked-checkbox"
-                               class="ml-2 text-sm font-medium text-gray-900 dark:text-black-300">Wanita</label>
+                    <div class="my-2">
+                        <label for="" class="font-semibold">Jenis Kelamin Terapis</label>
+                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Pria', 'name' => 'jenis_kelamin_terapis', 'id' => 'pria_terapis', 'value' => 1])
+                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Wanita', 'name' => 'jenis_kelamin_terapis', 'id' => 'wanita_terapis', 'value' => 0])
                     </div>
-                </div>
-                <div class="">
-                    <label for="" class="font-semibold">Jenis Kelamin Terapis</label>
-                    <div class="flex items-center mb-4">
-                        <input id="default-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox"
-                               class="ml-2 text-sm font-medium text-gray-900 dark:text-black-300">Pria</label>
+                    <div class="flex w-full flex-wrap gap-2 mt-2 mb-4">
+                        <div class="my-2">
+                            @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Jam', 'type' => 'time'])
+                        </div>
+                        <div class="my-2">
+                            @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Tanggal', 'type' => 'date'])
+                        </div>
                     </div>
-                    <div class="flex items-center">
-                        <input checked id="checked-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checked-checkbox"
-                               class="ml-2 text-sm font-medium text-gray-900 dark:text-black-300">Wanita</label>
+                    <div class="my-2">
+                        @include('components.field.text-area', ['label' => 'components.field.label', 'title' => 'Lokasi Kota'])
                     </div>
-                </div>
-                <div class="flex w-full flex-wrap gap-2 mt-2 mb-4">
-                    <div>
-                        <label for="first_name"
-                               class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Jam</label>
-                        <input type="time" id="first_name"
-                               class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[20rem] p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                               placeholder="John" required>
+                    <div class="my-2">
+                        @include('components.field.text-area', ['label' => 'components.field.label', 'title' => 'Alamat Lengkap'])
                     </div>
-                    <div>
-                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Tanggal</label>
-                        <input type="date" id="first_name"
-                               class="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[20rem] p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                               placeholder="John" required>
+                    <div class="my-2">
+                        @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Nama'])
+                    </div>
+                    <div class="my-2">
+                        @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'No. HP/WA'])
+                    </div>
+                    <div class="my-2">
+                        @include('components.field.text-area', ['label' => 'components.field.label', 'title' => 'Catatan Tambahan'])
+                    </div>
+                    <div class="my-2">
+                        <label for="" class="font-semibold">Metode Pembayaran</label>
+                        @include('components.field.checkbox', ['label' => 'components.field.label-inline', 'title' => 'Cash', 'id' => 'payment_method'])
                     </div>
                 </div>
-                <div class="mr-2">
-                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Lokasi
-                        Kota</label>
-                    <textarea id="message" rows="2"
-                              class="lg:w-[40rem] mb-2 block p-2.5 w-full text-sm text-white bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                              placeholder="Asal kota...."></textarea>
-                </div>
-                <div class="mr-2">
-                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Alamat
-                        lengkap</label>
-                    <textarea minlength="15" id="message" rows="2"
-                              class="lg:w-[40rem] mb-2 block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                              placeholder="Alamat lengkap...."></textarea>
-                </div>
-                <div>
-                    <label for="first_name"
-                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Nama</label>
-                    <input type="text" id="first_name"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[20rem] p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="Nama...." required>
-                </div>
-                <div class="mt-2 mb-2">
-                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">No
-                        Hp/Wa</label>
-                    <input type="number" id="first_name"
-                           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[20rem] p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                           placeholder="No Hp/Wa" required>
-                </div>
-                <div class="mr-2">
-                    <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Catatan
-                        Tambahan</label>
-                    <textarea id="message" rows="2"
-                              class="lg:w-[40rem] mb-2 block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                              placeholder="Tambah catatan...."></textarea>
-                </div>
-                <div class="">
-                    <label for="" class="font-semibold">Metode Pembayaran</label>
-                    <div class="flex items-center mb-4">
-                        <input id="default-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="default-checkbox"
-                               class="ml-2 text-sm font-medium text-gray-900 dark:text-black-300">JPay</label>
-                    </div>
-                    <div class="flex items-center">
-                        <input checked id="checked-checkbox" type="checkbox" value=""
-                               class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                        <label for="checked-checkbox"
-                               class="ml-2 text-sm font-medium text-gray-900 dark:text-black-300">Cash</label>
-                    </div>
-                </div>
-                <div class="flex gap-5 mb-8 flex-wrap">
-                    <div class="mt-2 mb-2">
-                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Harga
-                            Total</label>
-                        <input type="number" id="first_name"
-                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[20rem] p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                               placeholder="Rp." required>
-                    </div>
-                    <div class="lg:mt-10  md:mt-10">
-                        <button
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-light py-1  rounded text-lg w-[20rem]">
-                            Pesan
-                        </button>
-                    </div>
-                </div>
+                @include('layouts.payment-action-bottom')
             </form>
         </div>
 @endsection
