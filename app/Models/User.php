@@ -42,9 +42,4 @@ class User extends Authenticatable
     {
         return $this->country_code . $this->phone;
     }
-
-    public function routeNotificationForWhatsApp()
-    {
-        return $this->getPhoneNumber();
-    }
 }

@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('send-wa', function () {
-    return auth()->user()->notify(new \App\Notifications\SendOtpWhatsappNotification(auth()->user()));
+Route::get('send-wa', function (\App\Models\Otp $phone) {
+    $phone->notify(new \App\Notifications\SendOtpWhatsappNotification($phone));
 });
+
+Route::get('/otp/{otp:phone}', [\App\Http\Controllers\Auth\OtpController::class, 'index'])->name('otp.index');
+Route::post('/otp', [\App\Http\Controllers\Auth\OtpController::class, 'store'])->name('otp.store');
+Route::post('/otp/{otp}/resend', [\App\Http\Controllers\Auth\OtpController::class, 'resend'])->name('otp.resend');
+Route::post('/otp/{otp}/check', [\App\Http\Controllers\Auth\OtpController::class, 'check'])->name('otp.check');
 
 Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('landing.index');
 Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');

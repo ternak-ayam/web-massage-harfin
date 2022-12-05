@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Events\WhatsappEvent;
 use App\Notifications\SendOtpWhatsappNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -24,11 +25,11 @@ class SendOtpToWhatsapp implements ShouldQueue
     /**
      * Handle the event.
      *
-     * @param  Registered  $event
+     * @param  WhatsappEvent  $event
      * @return MessageInstance
      */
-    public function handle(Registered $event)
+    public function handle(WhatsappEvent $event)
     {
-        return $event->user->notify(new SendOtpWhatsappNotification($event));
+        return $event->otp->notify(new SendOtpWhatsappNotification($event));
     }
 }

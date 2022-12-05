@@ -18,11 +18,10 @@ class SendOtpWhatsappNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public $user;
-    public $content;
+    public $otp;
     public function __construct($event)
     {
-        $this->user = $event->user;
+        $this->otp = $event->otp;
     }
 
     /**
@@ -45,7 +44,7 @@ class SendOtpWhatsappNotification extends Notification implements ShouldQueue
     public function toWhatsApp($notifiable)
     {
         return (new WhatsAppMessage)
-            ->content("Silakan masukkan kode OTP: {$this->user['otp']}");
+            ->content("Silakan masukkan kode OTP: {$this->otp['token']}");
     }
 
     /**
