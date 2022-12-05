@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('send-wa', function () {
+    return auth()->user()->notify(new \App\Notifications\SendOtpWhatsappNotification(auth()->user()));
+});
+
 Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('landing.index');
 Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
 Route::get('/pesanan', [\App\Http\Controllers\PesananController::class, 'index'])->name('pesanan.index');

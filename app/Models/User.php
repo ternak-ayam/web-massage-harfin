@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'otp', 'phone', 'country_code',
     ];
 
     /**
@@ -37,4 +37,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getPhoneNumber()
+    {
+        return $this->country_code . $this->phone;
+    }
+
+    public function routeNotificationForWhatsApp()
+    {
+        return $this->getPhoneNumber();
+    }
 }

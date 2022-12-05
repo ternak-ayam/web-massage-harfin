@@ -15,8 +15,11 @@
                 @include('components.field.input-text', ['name' => 'email', 'label' => 'components.field.label', 'title' => 'Email'])
             </div>
             <div class="text-center">
-                @include('components.button.primary-button', ['title' => 'Bantuan'])
+                @include('components.button.primary-button', ['title' => 'Simpan'])
                 @include('components.button.danger-button', ['title' => 'Logout'])
+                <div>
+                    <a href="#" class="text-sm text-blue-500 hover:underline">Bantuan?</a>
+                </div>
             </div>
         </div>
     </div>
