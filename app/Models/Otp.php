@@ -22,6 +22,8 @@ class Otp extends Model
         'verified_at'
     ];
 
+    const EXPIRED_IN_MNT = 2;
+
     protected $dispatchesEvents = [
         'created' => WhatsappEvent::class,
     ];

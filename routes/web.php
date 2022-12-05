@@ -17,14 +17,25 @@ Route::get('send-wa', function (\App\Models\Otp $phone) {
     $phone->notify(new \App\Notifications\SendOtpWhatsappNotification($phone));
 });
 
-Route::get('/otp/{otp:phone}', [\App\Http\Controllers\Auth\OtpController::class, 'index'])->name('otp.index');
-Route::post('/otp', [\App\Http\Controllers\Auth\OtpController::class, 'store'])->name('otp.store');
-Route::post('/otp/{otp}/resend', [\App\Http\Controllers\Auth\OtpController::class, 'resend'])->name('otp.resend');
-Route::post('/otp/{otp}/check', [\App\Http\Controllers\Auth\OtpController::class, 'check'])->name('otp.check');
+Route::prefix('otp')->as('otp.')->group(function () {
+    Route::get('/{otp:phone}', [\App\Http\Controllers\Auth\OtpController::class, 'index'])->name('index');
+    Route::post('/', [\App\Http\Controllers\Auth\OtpController::class, 'store'])->name('store');
+    Route::post('/{otp}/resend', [\App\Http\Controllers\Auth\OtpController::class, 'resend'])->name('resend');
+    Route::post('/{otp}/check', [\App\Http\Controllers\Auth\OtpController::class, 'check'])->name('check');
+});
 
 Route::get('/', [\App\Http\Controllers\LandingPageController::class, 'index'])->name('landing.index');
-Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'index'])->name('profile.index');
-Route::get('/pesanan', [\App\Http\Controllers\PesananController::class, 'index'])->name('pesanan.index');
-Route::get('/pemesanan', [\App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan.index');
 
+Route::middleware('auth')->group(function () {
+    Route::prefix('profile')->as('profile.')->group(function () {
+        Route::get('/', [\App\Http\Controllers\ProfileController::class, 'index'])->name('index');
+        Route::post('/', [\App\Http\Controllers\ProfileController::class, 'update'])->name('update');
+    });
+
+    Route::get('/pesanan', [\App\Http\Controllers\PesananController::class, 'index'])->name('pesanan.index');
+    Route::get('/pemesanan', [\App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan.index');
+});
+
+Route::post('/register/otp', [\App\Http\Controllers\Auth\RegisterController::class, 'checkOtp'])->name('register.checkOtp');
+Route::post('/login/otp', [\App\Http\Controllers\Auth\LoginController::class, 'checkOtp'])->name('login.checkOtp');
 Auth::routes();

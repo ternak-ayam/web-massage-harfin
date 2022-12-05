@@ -7,7 +7,7 @@
                 <img class="mx-auto" src="{{ asset('assets/Logo Warna.png') }}" alt="">
             </div>
             <div class="p-4 rounded-lg border">
-                <form action="{{ route('otp.store') }}" method="post">
+                <form action="{{ route('register.checkOtp') }}" method="post">
                     @csrf
                     <div class="text-2xl font-semibold text-center mb-4">Daftar</div>
                     <div class="mx-2 mb-6 justify-center">

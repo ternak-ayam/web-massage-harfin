@@ -59,10 +59,21 @@ class RegisterController extends Controller
             : redirect($this->redirectPath());
     }
 
+    public function checkOtp(Request $request)
+    {
+        $request->validate([
+            'name' => ['sometimes', 'string', 'max:50'],
+            'email' => ['sometimes', 'string', 'email', 'max:255', 'unique:users'],
+            'phone' => ['required', 'digits_between:11,13', 'unique:users'],
+        ]);
+
+        return (new OtpController())->store($request);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\Models\User
      */
     protected function create(array $data)

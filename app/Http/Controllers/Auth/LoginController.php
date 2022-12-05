@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\JsonResponse;
@@ -47,5 +48,14 @@ class LoginController extends Controller
         return \request()->wantsJson()
             ? new JsonResponse([], 201)
             : redirect($this->redirectPath());
+    }
+
+    public function checkOtp(Request $request)
+    {
+        $user = User::where('phone', $request->phone)->first();
+
+        if(blank($user)) return back()->withErrors(['phone' => 'User dengan nomor ini tidak ditemukan']);
+
+        return (new OtpController())->store($request);
     }
 }
