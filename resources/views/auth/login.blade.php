@@ -11,7 +11,7 @@
                 <div class="p-4 rounded-lg border">
                     <div class="text-2xl font-semibold text-center mb-4">Login</div>
                     <div class="mx-2 mb-6 justify-center">
-                        @include('components.field.input-text', ['name' => 'phone', 'label' => 'components.field.label', 'title' => 'No. Hp'])
+                        @include('components.field.input-text', ['name' => 'phone', 'placeholder' => 'cth: 08123456789', 'label' => 'components.field.label', 'title' => 'No. Hp'])
                     </div>
                     <div>
                         <p class="text-xs text-center">Belum punya akun? <a href="{{ route('register') }}"

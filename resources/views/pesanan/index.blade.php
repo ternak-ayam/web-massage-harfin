@@ -2,60 +2,25 @@
 @section('title', 'Massage')
 @section('content')
     @include('layouts.navbar')
-    <div class="container m-auto mt-2">
+    <div class="md:container md:m-auto mt-4 mx-4">
         <div class="lg:ml-1 ml-2">
-            <h1 class="text-3xl font-semibold py-2">Message</h1>
-            <h2 class="mb-2">Pilih Durasi Pengerjaan</h2>
+            <h1 class="text-2xl font-semibold py-2">Message</h1>
+            <h2 class="mb-2 text-base">Pilih Durasi Pengerjaan</h2>
         </div>
         <div class="w-full">
-            <div class="">
-                <!--Card 1-->
-                <div class=" w-full lg:max-w-full lg:flex">
-                    <div
-                        class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-                        style="background-image: url('https://awsimages.detik.net.id/community/media/visual/2022/02/24/ilustrasi-spa_169.jpeg?w=700&q=90')"
-                        title="Mountain">
-                    </div>
-                    <div
-                        class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                        <div class="mb-8">
-                            <p class="text-sm text-gray-600 flex items-center">
-                                <svg class="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg"
-                                     viewBox="0 0 20 20">
-                                    <path
-                                        d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"/>
-                                </svg>
-                                Message 1
-                            </p>
-                            <div class="text-gray-900 font-bold text-xl mb-2">1 jam body massage Rp. 104.000</div>
-                            <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium
-                                nihil.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="mt-2">
                 <!--Card 1-->
                 <div class=" w-full lg:max-w-full lg:flex ">
                     <div
-                        class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                        class="h-48 lg:h-auto lg:w-48 border-black border border-r-0 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
                         style="background-image: url('https://awsimages.detik.net.id/community/media/visual/2022/02/24/ilustrasi-spa_169.jpeg?w=700&q=90')"
                         title="Mountain">
                     </div>
                     <div
-                        class=" bg-red-400 border-r border-b border-l border-red-400 lg:border-l-0 lg:border-t lg:border-red-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                        class=" bg-red-200 border-r border-b border-l border-black lg:border-l-0 lg:border-t lg:border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                         <div class="mb-8">
-                            <p class="text-sm text-gray-600 flex items-center">
-                                <svg class="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg"
-                                     viewBox="0 0 20 20">
-                                    <path
-                                        d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"/>
-                                </svg>
-                                Message 1
-                            </p>
-                            <div class="text-gray-900 font-bold text-xl mb-2">1 jam body massage Rp. 104.000</div>
-                            <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            <div class="font-bold text-xl mb-2">1 jam body massage Rp. 104.000</div>
+                            <p class="text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                 Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium
                                 nihil.</p>
                         </div>
@@ -63,55 +28,44 @@
                 </div>
             </div>
         </div>
-        <div class="mt-8 lg:ml-1 ml-2 bg-blu-200">
-            <h1 class="text-3xl font-semibold py-2">Tambahan Layanan Jasa (opsional) </h1>
-            <h2 class="mb-2">Pilih Durasi Pengerjaan</h2>
+        <div class="mt-8 lg:ml-1 ml-2">
+            <h2 class="mb-2 text-base">Tambahan Layanan Jasa (opsional)</h2>
         </div>
         <div class="mt-2">
             <!--Card 1-->
-            <div class="lg:w-[50rem] sm:w-full lg:max-w-full lg:flex ">
+            <div class="lg:w-[50rem] sm:w-full lg:max-w-full lg:flex relative">
                 <div
-                    class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                    class="h-48 lg:h-auto lg:w-48 border-black border border-r-0 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
                     style="background-image: url('https://awsimages.detik.net.id/community/media/visual/2022/02/24/ilustrasi-spa_169.jpeg?w=700&q=90')"
                     title="Mountain">
                 </div>
                 <div
-                    class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                    class="border-r border-b border-l lg:border-l-0 lg:border-t border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                     <div class="mb-8">
-                        <p class="text-sm text-gray-600 flex items-center">
-                            <svg class="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 0 20 20">
-                                <path
-                                    d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z"/>
-                            </svg>
-                            Message 1
-                        </p>
                         <div class="text-gray-900 font-bold text-xl mb-2">1 jam body massage Rp. 104.000</div>
                         <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium
                             nihil.</p>
 
-                        <div class="custom-number-input h-10 w-32">
-                            <label for="custom-input-number" class="w-full text-gray-700 text-sm font-semibold">Jumlah
-                            </label>
-                            <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                        <div class="custom-number-input h-10 w-32 ml-auto absolute right-4 bottom-4">
+                            <div class="flex flex-row h-10 w-full rounded-lg relative mt-1">
                                 <button data-action="decrement"
-                                        class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
-                                    <span class="m-auto text-2xl font-thin">−</span>
+                                        class="h-full w-20 rounded-l cursor-pointer outline-none bg-[#0BA2D4]">
+                                    <span class="m-auto text-2xl text-white font-thin">−</span>
                                 </button>
                                 <input type="number"
-                                       class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none"
-                                       name="custom-input-number" value="0"></input>
+                                       class="outline-none focus:outline-none text-center w-full border text-md hover:text-black focus:text-black md:text-basecursor-default flex items-center outline-none"
+                                       name="custom-input-number" min="0" value="0">
                                 <button data-action="increment"
-                                        class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
-                                    <span class="m-auto text-2xl font-thin">+</span>
+                                        class="h-full w-20 rounded-r bg-[#0BA2D4] cursor-pointer">
+                                    <span class="m-auto text-2xl text-white font-thin">+</span>
                                 </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <form action="" class="mt-2 pl-2 mb-24">
+            <form action="" class="mt-12 pl-2 mb-24">
                 <div class="md:w-1/2">
                     <div class="my-2">
                         <label for="" class="font-semibold">Jenis Kelamin</label>

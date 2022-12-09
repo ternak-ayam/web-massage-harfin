@@ -13,7 +13,7 @@
             <i class="fa-solid fa-bag-shopping text-white"></i>
             <span class="tab block text-xs text-white">Pemesanan</span>
         </a>
-        <a href=""
+        <a href="{{ route('voucher.index') }}"
            class="w-full focus:text-royal hover:text-royal justify-center inline-block text-center pt-2 pb-2 hover:scale-110 duration-300"
            activeClass="dark:text-gray-100 text-white">
             <i class="fa-solid fa-tags text-white"></i>

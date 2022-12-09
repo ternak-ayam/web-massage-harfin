@@ -13,6 +13,7 @@ function decrement(e) {
     );
     const target = btn.nextElementSibling;
     let value = Number(target.value);
+    if(value === 0) return;
     value--;
     target.value = value;
 }

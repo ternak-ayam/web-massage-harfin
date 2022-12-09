@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/', [\App\Http\Controllers\ProfileController::class, 'update'])->name('update');
     });
 
+    Route::get('/voucher', [\App\Http\Controllers\VoucherController::class, 'index'])->name('voucher.index');
+
     Route::get('/pesanan', [\App\Http\Controllers\PesananController::class, 'index'])->name('pesanan.index');
     Route::get('/pemesanan', [\App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan.index');
 });
