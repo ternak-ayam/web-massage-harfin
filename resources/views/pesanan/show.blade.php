@@ -9,23 +9,24 @@
         </div>
         <div class="w-full">
             <div class="mt-2">
-                <!--Card 1-->
-                <div class=" w-full lg:max-w-full lg:flex ">
+
+{{--                @foreach($service->details as $detail)--}}
+                <div class="w-full lg:max-w-full lg:flex">
                     <div
                         class="h-48 lg:h-auto lg:w-48 border-black border border-r-0 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
                         style="background-image: url('https://awsimages.detik.net.id/community/media/visual/2022/02/24/ilustrasi-spa_169.jpeg?w=700&q=90')"
                         title="Mountain">
                     </div>
                     <div
-                        class=" bg-red-200 border-r border-b border-l border-black lg:border-l-0 lg:border-t lg:border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                        class="relative md:w-1/4 w-full bg-red-200 border-r border-b border-l border-black lg:border-l-0 lg:border-t lg:border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                         <div class="mb-8">
-                            <div class="font-bold text-xl mb-2">1 jam body massage Rp. 104.000</div>
-                            <p class="text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium
-                                nihil.</p>
+                            <div class="font-bold text-xl mb-2">Body Massage</div>
+                            <p class="text-base">Durasi: 1 Jam</p>
+                            <div class="text-base flex absolute justify-end bottom-2 right-2"><span class="p-2 bg-[#0BA2D4] text-white border-black border rounded-lg">Rp12.000</span></div>
                         </div>
                     </div>
                 </div>
+{{--                @endforeach--}}
             </div>
         </div>
         <div class="mt-8 lg:ml-1 ml-2">
@@ -41,13 +42,17 @@
                 </div>
                 <div
                     class="border-r border-b border-l lg:border-l-0 lg:border-t border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                    <div class="mb-8">
-                        <div class="text-gray-900 font-bold text-xl mb-2">1 jam body massage Rp. 104.000</div>
-                        <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    <div class="mb-12">
+                        <div class="text-gray-900 font-bold text-xl">Body massage</div>
+                        <p class="text-base mb-2">Durasi: 1 Jam</p>
+                        <p class="text-gray-700 text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium
-                            nihil.</p>
+                            nihil.
+                        </p>
 
-                        <div class="custom-number-input h-10 w-32 ml-auto absolute right-4 bottom-4">
+                        <div class="text-base flex absolute justify-end bottom-4 left-"><span class="p-2 bg-[#0BA2D4] text-white border-black border rounded-lg">Rp12.000</span></div>
+
+                        <div class="custom-number-input h-10 w-32 ml-auto absolute right-4 bottom-6">
                             <div class="flex flex-row h-10 w-full rounded-lg relative mt-1">
                                 <button data-action="decrement"
                                         class="h-full w-20 rounded-l cursor-pointer outline-none bg-[#0BA2D4]">

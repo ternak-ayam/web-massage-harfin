@@ -2,33 +2,9 @@
 @section('title', 'Home')
 @section('content')
     @include('layouts.navbar')
-    <header>
-        <div class="p-12 lg:text-center h-[20rem] bg-[#0BA2D4] text-gray-700 relative flex overflow-hidden">
-            <div class="lg:w-1/3 w-full lg:ml-[20rem] text-white flex items-center text-sm lg:text-xl">
-                <marquee behavior="" direction="">Selamat datang @auth{{ auth()->user()->name }}@endauth di JlifePro. Silahkan pilih layanan
-                    jasa yang anda sukai
-                </marquee>
-            </div>
-            <img class="absolute w-[40rem] lg:right-[20rem]  lg:top-0 right-[-5rem] top-0"
-                 src="{{ asset('assets/spg.png') }}" alt="">
-        </div>
-    </header>
+    @include('layouts.banner')
     <div class="container flex justify-center m-auto mt-8 mb-8">
-        <div class="marquee">
-            <ul class="marquee-content">
-                <li>
-                    <a href="{{ route('pesanan.index') }}" class="group mx-1">
-                        <div
-                            class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8 border">
-                            <img
-                                src="https://res.cloudinary.com/dk0z4ums3/image/upload/v1621806057/attached_image/sehat-dengan-terapi-pijat-yang-tepat.jpg"
-                                alt="Massage" class="h-full w-full object-cover object-center group-hover:opacity-75">
-                        </div>
-                        <h3 class="mt-4 text-sm text-gray-700">Massage 1</h3>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        // ICON
     </div>
     <div class="border-dashed border-b border-sky-500 p-2 mt-12 pb-4">
         <div class="container m-auto">
@@ -40,17 +16,19 @@
     <div class="container mt-4 flex justify-center m-auto">
         <div class="marquee">
             <ul class="marquee-content">
+                @foreach($services as $service)
                 <li>
-                    <a href="{{ route('pesanan.index') }}" class="group mx-1">
+                    <a href="{{ route('pesanan.show', $service->slug) }}" class="group mx-1">
                         <div
-                            class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8 border">
+                            class="aspect-w-1 aspect-h-1 h-28 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8 border">
                             <img
-                                src="https://res.cloudinary.com/dk0z4ums3/image/upload/v1621806057/attached_image/sehat-dengan-terapi-pijat-yang-tepat.jpg"
-                                alt="Massage" class="h-full w-full object-cover object-center group-hover:opacity-75">
+                                src="{{ $service->image }}"
+                                alt="{{ $service->name }}" class="h-full w-full object-cover object-center group-hover:opacity-75">
                         </div>
-                        <h3 class="mt-4 text-sm text-gray-700">Massage 1</h3>
+                        <h3 class="mt-4 text-sm text-gray-700">{{ $service->name }}</h3>
                     </a>
                 </li>
+                @endforeach
             </ul>
         </div>
     </div>

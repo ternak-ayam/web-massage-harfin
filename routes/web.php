@@ -34,7 +34,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/voucher', [\App\Http\Controllers\VoucherController::class, 'index'])->name('voucher.index');
 
-    Route::get('/pesanan', [\App\Http\Controllers\PesananController::class, 'index'])->name('pesanan.index');
+    Route::get('/pesanan/{service:slug}', [\App\Http\Controllers\PesananController::class, 'show'])->name('pesanan.show');
     Route::get('/pemesanan', [\App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan.index');
 });
 

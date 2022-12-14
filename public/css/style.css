@@ -20,7 +20,7 @@ input[type='number']::-webkit-outer-spin-button {
 
 :root {
     --marquee-width: 80vw;
-    --marquee-height: 100%;
+    --marquee-height: 180px;
     /* --marquee-elements: 12; */ /* defined with JavaScript */
     --marquee-elements-displayed: 5;
     --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
@@ -53,10 +53,10 @@ input[type='number']::-webkit-outer-spin-button {
 /*}*/
 .marquee-content {
     list-style: none;
-    height: 100%;
     display: flex;
     animation: scrolling var(--marquee-animation-duration) linear infinite;
 }
+
 /* .marquee-content:hover {
 animation-play-state: paused;
 } */
