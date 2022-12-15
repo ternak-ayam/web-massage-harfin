@@ -1,4 +1,4 @@
-<header class="p-4">
+<header class="px-4 pt-4">
     <nav class="bg-white border-gray-200 px-4 lg:px-6 py-4 dark:bg-[#0BA2D4] rounded-lg">
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="#" class="flex items-center">

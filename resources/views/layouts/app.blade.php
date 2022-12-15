@@ -22,6 +22,16 @@
     @yield('content')
 </div>
 @include('layouts.footer')
+<script>
+    const formatRupiah = (value) => {
+        return parseFloat(value.toString()).toLocaleString("id-ID", {
+            style: "currency",
+            currency: "IDR",
+            minimumFractionDigits: 0
+        });
+    }
+</script>
+@stack('script')
 <script src="{{ asset('js/script.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 </body>
