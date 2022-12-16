@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Events\WhatsappEvent;
+use App\Models\Traits\WhatsAppSettingTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 
 class Otp extends Model
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, WhatsAppSettingTrait;
 
     protected $fillable = [
         'token',
@@ -27,14 +28,4 @@ class Otp extends Model
     protected $dispatchesEvents = [
         'created' => WhatsappEvent::class,
     ];
-
-    public function getPhoneNumber()
-    {
-        return $this->country_code . $this->phone;
-    }
-
-    public function routeNotificationForWhatsApp()
-    {
-        return $this->getPhoneNumber();
-    }
 }

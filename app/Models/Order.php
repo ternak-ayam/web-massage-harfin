@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Order extends Model
 {
@@ -18,5 +19,11 @@ class Order extends Model
         'total',
         'invoice',
         'status',
+    ];
+
+    const PENDING = "pending";
+
+    protected $attributes = [
+        'status' => self::PENDING,
     ];
 }

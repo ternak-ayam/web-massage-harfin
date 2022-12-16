@@ -23,7 +23,8 @@ class WhatsAppChannel
 
         return $twilio->messages->create('whatsapp:' . $to, [
             "from" => 'whatsapp:' . $from,
-            "body" => $message->content
+            "body" => $message->content,
+            "mediaUrl" => $message->media,
         ]);
     }
 }

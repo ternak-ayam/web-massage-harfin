@@ -21,4 +21,23 @@ class OrderRequirement extends Model
         'style_type_sex',
         'notes',
     ];
+
+    protected $dates = [
+      'service_due',
+    ];
+
+    public function getCustomerSex()
+    {
+        return $this->customer_sex === 0 ? "Wanita" : "Pria";
+    }
+
+    public function getTherapistSex()
+    {
+        return $this->therapist_sex === 0 ? "Wanita" : "Pria";
+    }
+
+    public function getStyleSex()
+    {
+        return $this->style_type_sex === 0 ? "Wanita" : "Pria";
+    }
 }

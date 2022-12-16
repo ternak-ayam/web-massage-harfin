@@ -19,7 +19,7 @@ class CreateOrderRequirementsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
-            $table->integer('name');
+            $table->string('name');
             $table->tinyInteger('customer_sex')->nullable();
             $table->string('phone');
             $table->string('city');
