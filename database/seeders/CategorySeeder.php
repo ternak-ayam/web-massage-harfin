@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        $categories = ['Massage', 'Haircut Male', 'Haircut Female', 'Reflexology', 'Hair Care'];
+        $categories = ['Massage', 'Reflexology', 'Hair Care'];
 
         foreach ($categories as $category) {
             Category::create([

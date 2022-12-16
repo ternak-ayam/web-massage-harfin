@@ -1,0 +1,219 @@
+[
+    {
+        "name": "Massage",
+        "image": "..",
+        "details": [
+            {
+                "name": "Body Massage",
+                "image": "img",
+                "price": 104000,
+                "duration": "1 Jam"
+            },
+            {
+                "name": "Body Massage",
+                "image": "img",
+                "price": 154000,
+                "duration": "1.5 Jam"
+            },
+            {
+                "name": "Body Massage",
+                "image": "img",
+                "price": 180000,
+                "duration": "2 Jam"
+            }
+        ],
+        "additional": [
+            {
+                "name": "Reflexi kaki",
+                "image": "img",
+                "price": 40000,
+                "duration": "30 Menit",
+                "description": "Pijat telapak kak, betis, dan paha dengan cream."
+            },
+            {
+                "name": "Light massage",
+                "image": "img",
+                "price": 30000,
+                "duration": "30 Menit",
+                "description": "Pijat kering tanpa minyak meliputi leher, pundak,kepala, punggung."
+            },
+            {
+                "name": "Kerokan",
+                "image": "img",
+                "price": 20000,
+                "duration": "20 Menit",
+                "description": "Membuka pori pori kulit agar angin dan panas dalam tubuh keluar dengan sendirinya."
+            },
+            {
+                "name": "Scrub / lulur",
+                "image": "img",
+                "price": 40000,
+                "duration": "30 Menit",
+                "description": "Membuang dan membuka pori pori kulit yang sudah mati dan melembutkan kulit."
+            },
+            {
+                "name": "Hand spa Reflexology",
+                "image": "img",
+                "price": 35000,
+                "duration": "30 Menit",
+                "description": "Pijat telapak tangan sampai ke lengan atas untuk melancarkan darah di urat saraf."
+            },
+            {
+                "name": "Totok Wajah",
+                "image": "img",
+                "price": 35000,
+                "duration": "30 Menit",
+                "description": "Menekan dan menarik titik titik urat saraf dalam area wajah dan di sekitar area kepala."
+            },
+            {
+                "name": "Matras",
+                "image": "img",
+                "price": 9900
+            }
+        ]
+    },
+    {
+        "name": "Reflexology",
+        "image": "..",
+        "details": [
+            {
+                "name": "Reflexology 1",
+                "image": "img",
+                "price": 80000,
+                "duration": "1 Jam"
+            },
+            {
+                "name": "Reflexology 2",
+                "image": "img",
+                "price": 120000,
+                "duration": "1.5 Jam"
+            },
+            {
+                "name": "Reflexology 3",
+                "image": "img",
+                "price": 155000,
+                "duration": "2 Jam"
+            }
+        ],
+        "additional": [
+            {
+                "name": "Light massage",
+                "image": "img",
+                "price": 30000,
+                "duration": "30 Menit",
+                "description": "Pijat kering tanpa minyak meliputi leher, pinggang, pundak, kepala."
+            },
+            {
+                "name": "Hand spa Reflexology",
+                "image": "img",
+                "price": 35000,
+                "duration": "30 Menit",
+                "description": "Pijat reflexi telapak tangan sampai lengan atas."
+            },
+            {
+                "name": "Totok Wajah",
+                "image": "img",
+                "price": 35000,
+                "duration": "30 Menit",
+                "description": "menekan dan menarik titik titik urat saraf dalam area wajah dan di sekitar area kepala."
+            },
+            {
+                "name": "Kerokan",
+                "image": "img",
+                "price": 20000,
+                "duration": "20 Menit",
+                "description": "Membuka pori pori kulit agar angin dan panas dalam tubuh keluar dengan sendirinya."
+            },
+            {
+                "name": "Maker wajah",
+                "image": "img",
+                "price": 50000,
+                "duration": "30 Menit",
+                "description": "Melembutkan dan menyegarkan kulit pada wajah."
+            },
+            {
+                "name": "Matras",
+                "image": "img",
+                "price": 9900
+            }
+        ]
+    },
+    {
+        "name": "Hair Care",
+        "image": "..",
+        "details": [
+            {
+                "name": "Hair cut male",
+                "image": "img",
+                "price": 95000,
+                "duration": "1 Jam"
+            },
+            {
+                "name": "hair cut female",
+                "image": "img",
+                "price": 100000,
+                "duration": "1.5 Jam"
+            },
+            {
+                "name": "Hair cut kids",
+                "image": "img",
+                "price": 95000,
+                "duration": "2 Jam"
+            },
+            {
+                "name": "Creambath",
+                "image": "img",
+                "price": 100000,
+                "duration": "2 Jam"
+            },
+            {
+                "name": "Hair Spa",
+                "image": "img",
+                "price": 150000,
+                "duration": "2 Jam"
+            },
+            {
+                "name": "Hair Mask",
+                "image": "img",
+                "price": 150000,
+                "duration": "2 Jam"
+            },
+            {
+                "name": "Hair coloring / pewarnaan",
+                "image": "img",
+                "price": 100000,
+                "duration": "2 Jam"
+            }
+        ],
+        "additional": [
+            {
+                "name": "Blow dry biasa",
+                "image": "img",
+                "price": 20000,
+                "duration": "",
+                "description": ""
+            },
+            {
+                "name": "Catok",
+                "image": "img",
+                "price": 25000,
+                "duration": "",
+                "description": ""
+            },
+            {
+                "name": "Pijat kepala",
+                "image": "img",
+                "price": 10000,
+                "duration": "10 Menit",
+                "description": ""
+            },
+            {
+                "name": "Shaving",
+                "image": "img",
+                "price": 6000,
+                "duration": "",
+                "description": "mencukur dan merapikan kumis dan jenggot."
+            }
+        ]
+    }
+]
