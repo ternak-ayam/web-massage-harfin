@@ -1,6 +1,10 @@
 <?php
 
+use App\Models\AdditionalService;
+use App\Models\Service;
+use App\Models\ServiceDetail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/pesanan/{service:slug}', [\App\Http\Controllers\PesananController::class, 'show'])->name('pesanan.show');
     Route::post('/pesanan', [\App\Http\Controllers\PesananController::class, 'store'])->name('pesanan.store');
 
-    Route::get('/pemesanan', [\App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan.index');
+    Route::get('/pemesanan', [\App\Http\Controllers\PemesananController::class, 'index'])->name('pewmesanan.index');
 });
 
 Route::post('/register/otp', [\App\Http\Controllers\Auth\RegisterController::class, 'checkOtp'])->name('register.checkOtp');

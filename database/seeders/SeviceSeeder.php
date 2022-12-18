@@ -22,15 +22,15 @@ class SeviceSeeder extends Seeder
         $data = file_get_contents(storage_path("app/serviceDetails.json"));
 
         foreach (json_decode($data, true) as $service) {
-            $service = Service::create([
+            $srv = Service::create([
                 'name' => $service['name'],
                 'slug'  => Str::slug($service['name']),
                 'image' => $service['image'],
             ]);
 
-            foreach (json_decode($service['details'], true) as $detail) {
+            foreach ($service['details'] as $detail) {
                 ServiceDetail::create([
-                    'service_id' => $service->id,
+                    'service_id' => $srv->id,
                     'image' => $detail['image'],
                     'title' => $detail['name'],
                     'duration' => $detail['duration'],
@@ -40,7 +40,7 @@ class SeviceSeeder extends Seeder
 
             foreach ($service['additionals'] as $additional) {
                 AdditionalService::create([
-                    'service_id' => $service->id,
+                    'service_id' => $srv->id,
                     'name' => $additional['name'],
                     'image' => $additional['image'],
                     'duration' => $additional['duration'],
