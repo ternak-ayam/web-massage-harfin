@@ -21,7 +21,7 @@ class CreateAdditionalServicesTable extends Migration
             $table->foreign('service_id')->references('id')->on('services');
             $table->string('name');
             $table->string('image')->nullable();
-            $table->string('duration');
+            $table->string('duration')->nullable();
             $table->double('price');
             $table->longText('description')->nullable();
             $table->softDeletes();

@@ -17,9 +17,9 @@ class CreateServicesTable extends Migration
 
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
+//            $table->unsignedBigInteger('category_id');
             $table->string('slug')->unique();
-            $table->string('type')->nullable();
+//            $table->string('type')->nullable();
             $table->string('name');
             $table->string('image')->nullable();
             $table->softDeletes();

@@ -22,7 +22,7 @@
                 "duration": "2 Jam"
             }
         ],
-        "additional": [
+        "additionals": [
             {
                 "name": "Reflexi kaki",
                 "image": "img",
@@ -68,7 +68,9 @@
             {
                 "name": "Matras",
                 "image": "img",
-                "price": 9900
+                "price": 9900,
+                "duration": "",
+                "description": ""
             }
         ]
     },
@@ -95,7 +97,7 @@
                 "duration": "2 Jam"
             }
         ],
-        "additional": [
+        "additionals": [
             {
                 "name": "Light massage",
                 "image": "img",
@@ -134,7 +136,9 @@
             {
                 "name": "Matras",
                 "image": "img",
-                "price": 9900
+                "price": 9900,
+                "duration": "",
+                "description": ""
             }
         ]
     },
@@ -185,7 +189,7 @@
                 "duration": "2 Jam"
             }
         ],
-        "additional": [
+        "additionals": [
             {
                 "name": "Blow dry biasa",
                 "image": "img",
