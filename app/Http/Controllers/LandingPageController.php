@@ -11,8 +11,8 @@ class LandingPageController extends Controller
     public function index()
     {
         return view('landing.index', [
-            'services' => ServiceDetail::all(),
-            'top_services' => ServiceDetail::all()->random(3),
+            'services' => Service::all(),
+            'top_services' => Service::all()->random(3),
         ]);
     }
 }
