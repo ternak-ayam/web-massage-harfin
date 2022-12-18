@@ -12,6 +12,7 @@ class WhatsAppChannel
      * @throws TwilioException
      * @throws ConfigurationException
      */
+
     public function send($notifiable, Notification $notification)
     {
         $message = $notification->toWhatsApp($notifiable);
