@@ -2,6 +2,16 @@
     {
         "name": "Massage",
         "image": "..",
+        "categories": [
+            {
+                "name": "Massage 1",
+                "image": ".."
+            },
+            {
+                "name": "Massage 2",
+                "image": ".."
+            }
+        ],
         "details": [
             {
                 "name": "Body Massage",
@@ -77,6 +87,16 @@
     {
         "name": "Reflexology",
         "image": "..",
+        "categories": [
+            {
+                "name": "Reflexology 1",
+                "image": ".."
+            },
+            {
+                "name": "Reflexology 2",
+                "image": ".."
+            }
+        ],
         "details": [
             {
                 "name": "Reflexology 1",
@@ -145,6 +165,20 @@
     {
         "name": "Hair Care",
         "image": "..",
+        "categories": [
+            {
+                "name": "Hair Cut Male 1",
+                "image": ".."
+            },
+            {
+                "name": "Hair Cut Female 2",
+                "image": ".."
+            },
+            {
+                "name": "Hair Care 2",
+                "image": ".."
+            }
+        ],
         "details": [
             {
                 "name": "Hair cut male",

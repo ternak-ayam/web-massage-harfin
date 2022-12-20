@@ -18,6 +18,7 @@ class Otp extends Model
         'name',
         'email',
         'phone',
+        'password',
         'count_sending',
         'expired_at',
         'verified_at'

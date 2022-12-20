@@ -37,8 +37,12 @@
                                 type="text" id="sixth" name="token[]" maxlength="1"/>
                         </div>
                         <div class="flex justify-center gap-2">
-                            @include('components.button.danger-button', ['title' => 'Kirim ulang OTP', 'formaction' => route('otp.resend', $otp->id), 'formmethod' => 'post', 'type' => 'submit'])
-                            @include('components.button.primary-button', ['title' => 'Verifikasi', 'formaction' => route('otp.check', $otp->id), 'formmethod' => 'post', 'type' => 'submit'])
+                            <div class="mt-4">
+                                @include('components.button.danger-button', ['title' => 'Kirim ulang OTP', 'formaction' => route('otp.resend', $otp->id), 'formmethod' => 'post', 'type' => 'submit'])
+                            </div>
+                            <div class="mt-4">
+                                @include('components.button.primary-button', ['title' => 'Verifikasi', 'formaction' => route('otp.check', $otp->id), 'formmethod' => 'post', 'type' => 'submit'])
+                            </div>
                         </div>
                     </form>
                 </div>

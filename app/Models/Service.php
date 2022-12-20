@@ -12,9 +12,6 @@ class Service extends Model
     protected $with = ['details', 'additionals'];
 
     protected $fillable = [
-        'category_id',
-        'slug',
-        'type',
         'name',
         'image',
         'deleted_at',

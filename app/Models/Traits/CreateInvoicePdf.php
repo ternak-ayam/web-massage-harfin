@@ -34,6 +34,9 @@ trait CreateInvoicePdf {
         $invoice = Invoice::make()
             ->buyer($customer)
             ->addItems($items)
+            ->logo(public_path('/assets/Logo Warna.png'))
+            ->sequence($orderReq->order['order_id'])
+            ->name('invoice_JLP_' . $orderReq->order['order_id'])
             ->save('public');
 
         return $invoice->url();

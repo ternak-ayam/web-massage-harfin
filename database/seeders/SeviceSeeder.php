@@ -24,9 +24,19 @@ class SeviceSeeder extends Seeder
         foreach (json_decode($data, true) as $service) {
             $srv = Service::create([
                 'name' => $service['name'],
-                'slug'  => Str::slug($service['name']),
+                'slug' => Str::slug($service['name']),
                 'image' => $service['image'],
             ]);
+
+            foreach ($service['categories'] as $category) {
+                Category::create([
+                    'service_id' => $srv->id,
+                    'name' => $category['name'],
+                    'slug' => Str::slug($category['name']),
+                    'image' => $category['image'],
+                ]);
+            }
+
 
             foreach ($service['details'] as $detail) {
                 ServiceDetail::create([

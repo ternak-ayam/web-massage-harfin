@@ -38,12 +38,16 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/voucher', [\App\Http\Controllers\VoucherController::class, 'index'])->name('voucher.index');
 
+    Route::get('/pesanan/success/{order:order_id}', [\App\Http\Controllers\PesananController::class, 'success'])->name('pesanan.success');
     Route::get('/pesanan/{service:slug}', [\App\Http\Controllers\PesananController::class, 'show'])->name('pesanan.show');
+    Route::get('/pesanan/{order:order_id}/cancel', [\App\Http\Controllers\PesananController::class, 'download'])->name('pesanan.cancel');
     Route::post('/pesanan', [\App\Http\Controllers\PesananController::class, 'store'])->name('pesanan.store');
+
 
     Route::get('/pemesanan', [\App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan.index');
 });
 
 Route::post('/register/otp', [\App\Http\Controllers\Auth\RegisterController::class, 'checkOtp'])->name('register.checkOtp');
 Route::post('/login/otp', [\App\Http\Controllers\Auth\LoginController::class, 'checkOtp'])->name('login.checkOtp');
+
 Auth::routes();

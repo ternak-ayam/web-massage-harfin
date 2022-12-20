@@ -44,7 +44,7 @@ class SendOtpWhatsappNotification extends Notification implements ShouldQueue
     public function toWhatsApp($notifiable)
     {
         return (new WhatsAppMessage)
-            ->content("Silakan masukkan kode OTP: {$this->otp['token']}");
+            ->content("Your package has been shipped. It will be delivered in ".$this->otp['token']." business days.");
     }
 
     /**

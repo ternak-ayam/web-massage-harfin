@@ -14,7 +14,7 @@ return [
 
     'serial_number' => [
         'series'   => 'JLP',
-        'sequence' => 1,
+        'sequence' => rand(),
         /*
          * Sequence will be padded accordingly, for ex. 00001
          */

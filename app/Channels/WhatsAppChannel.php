@@ -22,10 +22,13 @@ class WhatsAppChannel
 
         $twilio = new Client(config('services.twilio.sid'), config('services.twilio.token'));
 
-        return $twilio->messages->create('whatsapp:' . $to, [
+        $options = [
             "from" => 'whatsapp:' . $from,
-            "body" => $message->content,
-            "mediaUrl" => $message->media,
-        ]);
+            "body" => $message->content
+        ];
+
+//        if(isset($message->media)) $options += ["mediaUrl" => $message->media];
+
+        return $twilio->messages->create('whatsapp:' . $to, $options);
     }
 }

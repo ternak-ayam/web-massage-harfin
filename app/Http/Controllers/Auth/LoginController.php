@@ -41,21 +41,21 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login($data)
-    {
-        $this->guard()->login($data);
+//    public function login($data)
+//    {
+//        $this->guard()->login($data);
+//
+//        return \request()->wantsJson()
+//            ? new JsonResponse([], 201)
+//            : redirect($this->redirectPath());
+//    }
 
-        return \request()->wantsJson()
-            ? new JsonResponse([], 201)
-            : redirect($this->redirectPath());
-    }
-
-    public function checkOtp(Request $request)
-    {
-        $user = User::where('phone', $request->phone)->first();
-
-        if(blank($user)) return back()->withErrors(['phone' => 'User dengan nomor ini tidak ditemukan']);
-
-        return (new OtpController())->store($request);
-    }
+//    public function checkOtp(Request $request)
+//    {
+//        $user = User::where('phone', $request->phone)->first();
+//
+//        if(blank($user)) return back()->withErrors(['phone' => 'User dengan nomor ini tidak ditemukan']);
+//
+//        return (new OtpController())->store($request);
+//    }
 }

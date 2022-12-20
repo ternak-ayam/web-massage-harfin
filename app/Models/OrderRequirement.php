@@ -26,6 +26,11 @@ class OrderRequirement extends Model
       'service_due',
     ];
 
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'order_id');
+    }
+
     public function getCustomerSex()
     {
         return $this->customer_sex === 0 ? "Wanita" : "Pria";

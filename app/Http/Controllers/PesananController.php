@@ -30,6 +30,12 @@ class PesananController extends Controller
         ]);
     }
 
+    public function success(Order $order)
+    {
+        return view('pesanan.after-order', [
+            'order' => $order,
+        ]);
+    }
 
     public function store(Request $request)
     {
@@ -40,7 +46,7 @@ class PesananController extends Controller
         $additionalServices = AdditionalService::whereIn('id', $request->additional_services)->get();
 
         foreach ($additionalServices as $key => $additionalService) {
-            $additionalServiceTotalPrice += $additionalService->price * $request->quantity[$key];
+            $additionalServiceTotalPrice += $additionalService->price * $request->quantity[$additionalService->id];
         }
 
         $subtotal = $serviceDetails->sum('price') + $additionalServiceTotalPrice;
@@ -50,12 +56,14 @@ class PesananController extends Controller
             $order = new Order();
 
             $order->fill([
+                'order_id' => rand(),
                 'user_id' => $request->user()->id,
                 'service_id' => $service->id,
                 'channel' => $request->channel,
                 'subtotal' => $subtotal,
                 'discount' => $discount,
                 'total' => $total,
+                'cancel_expired' => now()->addMinutes(3)
             ]);
 
             $order->saveOrFail();
@@ -88,8 +96,8 @@ class PesananController extends Controller
                     'additional_service_id' => $additionalService->id,
                     'service_name' => $additionalService->name,
                     'price' => $additionalService->price,
-                    'quantity' => $request->quantity[$key],
-                    'subtotal' => $additionalService->price * $request->quantity[$key],
+                    'quantity' => $request->quantity[$additionalService->id],
+                    'subtotal' => $additionalService->price * $request->quantity[$additionalService->id],
                 ]);
             }
 
@@ -104,7 +112,6 @@ class PesananController extends Controller
 
             $request->user()->notify(new SendOrderConfirmationNotification($order));
 
-            return redirect(route('pemesanan.index'));
-
+            return redirect(route('pesanan.success', $order->order_id));
     }
 }

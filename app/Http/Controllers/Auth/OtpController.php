@@ -43,11 +43,11 @@ class OtpController extends Controller
         if($otp = $otpService->verify($request, $otp)) {
             if(is_int($otp) && $otp == 403) return back()->withErrors(['status' => 'Kode verifikasi kedaluarsa']);
 
-            $user = User::where('phone', $otp->phone)->first();
-
-            if($user) {
-                return (new LoginController())->login($user);
-            }
+//            $user = User::where('phone', $otp->phone)->first();
+//
+//            if($user) {
+//                return (new LoginController())->login($user);
+//            }
 
             return (new RegisterController)->register($otp);
         }

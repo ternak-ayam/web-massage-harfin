@@ -6,6 +6,7 @@ use App\Events\WhatsappEvent;
 use App\Models\Otp;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class OtpService {
     public function verify(Request $request, $otp)
@@ -46,6 +47,7 @@ class OtpService {
         return Otp::create([
             'token' => rand(111111, 999999),
             'name' => $request->name,
+            'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'email' => $request->email,
             'expired_at' => now()->addMinutes(Otp::EXPIRED_IN_MNT),

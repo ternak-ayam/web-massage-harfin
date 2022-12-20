@@ -54,17 +54,17 @@
     <div class="container mt-4 flex justify-center m-auto">
         <div class="marquee">
             <ul class="marquee-content">
-                @foreach($services as $service)
+                @foreach($categories as $category)
                     <li>
-                        <a href="{{ route('pesanan.show', $service->slug) }}" class="group mx-1">
+                        <a href="{{ route('pesanan.show', $category->service['slug']) }}" class="group mx-1">
                             <div
                                 class="aspect-w-1 aspect-h-1 h-28 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8 border">
                                 <img
-                                    src="{{ $service->image }}"
-                                    alt="{{ $service->name }}"
+                                    src="{{ $category->image }}"
+                                    alt="{{ $category->name }}"
                                     class="h-full w-full object-cover object-center group-hover:opacity-75">
                             </div>
-                            <h3 class="mt-4 text-sm text-gray-700">{{ $service->name }}</h3>
+                            <h3 class="mt-4 text-sm text-gray-700">{{ $category->name }}</h3>
                         </a>
                     </li>
                 @endforeach
@@ -99,19 +99,35 @@
         <form action="">
             <div class="mx-auto max-w-lg">
                 <h1 class="text-3xl text-gray-800 lg:text-4xl"><span class="font-bold">Ayo bergabung</span> <br> <span
-                        class="font-light">menjadi mitra kami</span></h1>
-                @include('components.button.primary-button', ['title' => 'Daftar mitra', 'type' => 'submit'])
+                        class="font-light">menjadi mitra kami</span>
+                </h1>
+                    @include('components.button.primary-button', ['title' => 'Daftar mitra', 'type' => 'button', 'id' => 'daftar_mitra', 'class' => 'mt-4'])
             </div>
         </form>
     </div>
-    <div class="mt-12">
-        <h1 class="text-xl text-center text-gray-800"><span
-                class="font-light">Silakan scan QR di bawah untuk berdonasi</span></h1>
-        <div class="flex justify-center">
-            <img class="w-72 h-72"
-                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/QR_code_for_mobile_English_Wikipedia.svg/1200px-QR_code_for_mobile_English_Wikipedia.svg.png"
-                 alt="Barcode Dana">
-        </div>
+    <div class="my-12">
+        <form action="" method="post">
+            @csrf
+            <h1 class="text-xl text-center text-gray-800"><span
+                    class="font-light">Silakan masukkan jumlah donasi yang akan kamu berikan</span></h1>
+            <div class="justify-center flex mt-4">
+                <div>
+                    <div>
+                        @include('components.field.input-text', ['name' => 'amount', 'placeholder' => 'Cth: 80000', 'class' => 'w-25'])
+                    </div>
+                    <div class="text-center mt-4">
+                        @include('components.button.primary-button', ['title' => 'Donasi', 'type' => 'submit'])
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
     @include('layouts.navbottom')
+    <script>
+        const daftarMitraButton = document.getElementById("daftar_mitra");
+
+        daftarMitraButton.addEventListener("click", () => {
+            window.open("https://forms.gle/qKStXf3rrxRQZoda7", "_blank");
+        });
+    </script>
 @endsection

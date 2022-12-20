@@ -50,6 +50,7 @@ class RegisterController extends Controller
             'name' => $data->name,
             'email' => $data->email,
             'phone' => $data->phone,
+            'password' => $data->password,
         ])));
 
         $this->guard()->login($user);
@@ -65,6 +66,7 @@ class RegisterController extends Controller
             'name' => ['sometimes', 'string', 'max:50'],
             'email' => ['sometimes', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'digits_between:11,13', 'unique:users'],
+            'password' => ['required', 'min:8'],
         ]);
 
         return (new OtpController())->store($request);
@@ -82,6 +84,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
+            'password' => $data['password'],
         ]);
     }
 }

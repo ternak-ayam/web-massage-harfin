@@ -152,7 +152,11 @@
                             class="w-full border-r border-b border-l lg:border-l-0 lg:border-t border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                             <div class="mb-12">
                                 <div class="text-gray-900 font-bold text-xl">{{ $additional->name }}</div>
+                                @if($additional->name === "Matras")
+                                <p class="text-base mb-2"></p>
+                                @else
                                 <p class="text-base mb-2">Durasi: {{ $detail->duration }}</p>
+                                @endif
                                 <p class="text-gray-700 text-sm">
                                     {{ $additional->description }}
                                 </p>
@@ -172,7 +176,7 @@
                                         <input type="number"
                                                id="additional_services_quantity{{ $key }}"
                                                class="outline-none focus:outline-none text-center w-full border text-md hover:text-black focus:text-black md:text-basecursor-default flex items-center outline-none"
-                                               name="quantity[]" min="0" value="0">
+                                               name="quantity[{{ $additional->id }}]" min="0" value="0">
                                         <button data-action="increment"
                                                 type="button"
                                                 id="increment{{ $key }}"

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Profile')
+@section('title', 'Register')
 @section('content')
     <div class="w-full container h-screen m-auto items-center flex mt-[-5rem]">
         <div class="container m-auto items-center max-w-lg">
@@ -20,6 +20,9 @@
                         <div class="my-2">
                             @include('components.field.input-text', ['name' => 'email', 'label' => 'components.field.label', 'title' => 'Email'])
                         </div>
+                        <div class="my-2">
+                            @include('components.field.input-text', ['name' => 'password', 'label' => 'components.field.label', 'type' => 'password', 'title' => 'Password'])
+                        </div>
                     </div>
                     <div>
                         <p class="text-xs text-center">Sudah punya akun? <a href="{{ route('login') }}"
@@ -28,7 +31,7 @@
                             </a>
                         </p>
                     </div>
-                    <div class="text-center">
+                    <div class="text-center mt-4">
                         @include('components.button.primary-button', ['title' => 'Daftar', 'type' => 'submit'])
                     </div>
                 </form>

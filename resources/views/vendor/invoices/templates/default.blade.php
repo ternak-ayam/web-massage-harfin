@@ -136,13 +136,13 @@
 
 <body>
 {{-- Header --}}
-{{--
+
     @if($invoice->logo)
         <img src="{{ $invoice->getLogo() }}" alt="logo" height="100">
+    @else
+        <img src="{{ asset('/assets/Logo Warna.png') }}" alt="logo" height="100">
     @endif
---}}
 
-<img src="{{ asset('/assets/Logo Warna.png') }}" alt="logo" height="100">
 
 <table class="table mt-5">
     <tbody>
@@ -375,11 +375,14 @@
 @endif
 
 <p>
+    Thankyou for your business
+</p>
+{{--<p>
     {{ trans('invoices::invoice.amount_in_words') }}: {{ $invoice->getTotalAmountInWords() }}
 </p>
 <p>
     {{ trans('invoices::invoice.pay_until') }}: {{ $invoice->getPayUntilDate() }}
-</p>
+</p>--}}
 
 <script type="text/php">
             if (isset($pdf) && $PAGE_COUNT > 1) {

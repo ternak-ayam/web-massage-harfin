@@ -12,5 +12,12 @@ class Category extends Model
     protected $fillable = [
         'slug',
         'name',
+        'image',
+        'service_id',
     ];
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'service_id');
+    }
 }

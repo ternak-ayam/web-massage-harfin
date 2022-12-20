@@ -17,4 +17,9 @@ class AdditionalOrder extends Model
         'quantity',
         'subtotal',
     ];
+
+    public function additionalOrder()
+    {
+        return $this->belongsTo(AdditionalService::class, 'additional_service_id');
+    }
 }

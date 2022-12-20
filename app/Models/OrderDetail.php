@@ -15,4 +15,9 @@ class OrderDetail extends Model
         'service_name',
         'price',
     ];
+
+    public function serviceDetail()
+    {
+        return $this->belongsTo(ServiceDetail::class, 'service_detail_id');
+    }
 }
