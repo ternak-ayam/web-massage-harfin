@@ -31,6 +31,16 @@ class OrderRequirement extends Model
         return $this->belongsTo(Order::class, 'order_id');
     }
 
+    public function getFullAddress()
+    {
+        return $this->address . ' - ' . $this->city;
+    }
+
+    public function getPhoneNumber()
+    {
+        return $this->country_code . $this->phone;
+    }
+
     public function getCustomerSex()
     {
         return $this->customer_sex === 0 ? "Wanita" : "Pria";

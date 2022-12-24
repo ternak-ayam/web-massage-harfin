@@ -3,122 +3,47 @@
 @section('content')
     <header>
         <nav class="bg-white border-gray-400 px-4 lg:px-6 py-2.5">
-            <div class="grid grid-cols-2 grid-flow-rows gap-4  w-full">
+            <div class="grid grid-cols-2 grid-flow-rows gap-4 w-full">
                 <div>
-                    @include('components.button.primary-button', ['title' => 'Pesanan Aktif', 'class' => 'w-full'])
+                    <form>
+                        <input type="hidden" name="type" value="active">
+                        @include('components.button.primary-button', ['title' => 'Pesanan Aktif', 'class' => 'w-full', 'withoutBg' => $type !== 'active', 'type' =>'submit'])
+                    </form>
                 </div>
                 <div>
-                    @include('components.button.primary-button', ['title' => 'Riwayat Pesanan', 'class' => 'w-full'])
+                    <form>
+                        <input type="hidden" name="type" value="history">
+                        @include('components.button.primary-button', ['title' => 'Riwayat Pesanan', 'class' => 'w-full', 'withoutBg' => $type !== 'history', 'type' =>'submit'])
+                    </form>
                 </div>
             </div>
-
-            <div class="grid grid-cols-2 gap-2">
-                <div>
-
-                    <div class="overflow-x-auto relative mt-4 mx-2">
-                        <table class="w-full text-sm text-left text-gray-500">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                            <tr>
-                                <th scope="col" class="py-3 px-6">
-                                    No
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Order ID
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Total
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Invoice
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Status
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Aksi
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($orders as $order)
-                            <tr class="bg-white border-b">
-                                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                                    {{ $orders->firstItem() + $loop->index }}
-                                </th>
-                                <td class="py-4 px-6">
-                                    {{ $order->order_id }}
-                                </td>
-                                <td class="py-4 px-6">
-                                    {{ $order->total }}
-                                </td>
-                                <td class="py-4 px-6">
-                                    @include('components.button.primary-button', ['title' => 'Download', 'type' => 'button'])
-                                </td>
-                                <td class="py-4 px-6">
-                                    Dibatalkan
-                                </td>
-                                <td class="py-4 px-6">
-                                    @include('components.button.primary-button', ['title' => 'Lihat Detail', 'type' => 'button'])
-                                </td>
-                            </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-                <div>
-                    <div class="overflow-x-auto relative mt-4 mx-2">
-                        <table class="w-full text-sm text-left text-gray-500">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                            <tr>
-                                <th scope="col" class="py-3 px-6">
-                                    No
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Order ID
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Total
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Invoice
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Status
-                                </th>
-                                <th scope="col" class="py-3 px-6">
-                                    Tanggal
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($orders as $order)
-                                <tr class="bg-white border-b">
-                                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                                        {{ $orders->firstItem() + $loop->index }}
-                                    </th>
-                                    <td class="py-4 px-6">
-                                        {{ $order->order_id }}
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        {{ $order->total }}
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        @include('components.button.primary-button', ['title' => 'Download', 'type' => 'button'])
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        Dibatalkan
-                                    </td>
-                                    <td class="py-4 px-6">
-                                        {{ $order->created_at->format('j F Y') }}
-                                    </td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div>
+                @foreach($orders as $order)
+                    <a href="{{ route('pemesanan.show', $order->order_id) }}"
+                       class="w-full my-2 shadow bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                        <div class="flex gap-4">
+                            <div>
+                                <img class="rounded-full w-12 h-12 lg:w-20 lg:h-20" src="{{ $order->service['image'] }}"
+                                     alt="Image">
+                            </div>
+                            <div>
+                                <div class="mb-8">
+                                    <div
+                                        class="text-[#0BA2D4] font-bold text-xl mb-2">{{ $order->service['name'] }}</div>
+                                    <p class="text-gray-500 text-sm"><i
+                                            class="fa-solid fa-location-dot"></i> {{ $order->requirement->getFullAddress() }}
+                                    </p>
+                                    <p class="text-gray-500 text-sm"><i
+                                            class="fa-regular fa-calendar"></i> {{ $order->getFormattedServiceDue() }}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+            <div class="mt-4">
+                {{ $orders->links() }}
             </div>
         </nav>
     </header>

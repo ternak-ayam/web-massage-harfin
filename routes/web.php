@@ -38,10 +38,14 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/voucher', [\App\Http\Controllers\VoucherController::class, 'index'])->name('voucher.index');
 
+    Route::get('/pesanan/detail/{order:order_id}', [\App\Http\Controllers\PemesananController::class, 'show'])->name('pemesanan.show');
     Route::get('/pesanan/success/{order:order_id}', [\App\Http\Controllers\PesananController::class, 'success'])->name('pesanan.success');
     Route::get('/pesanan/{service:slug}', [\App\Http\Controllers\PesananController::class, 'show'])->name('pesanan.show');
-    Route::get('/pesanan/{order:order_id}/cancel', [\App\Http\Controllers\PesananController::class, 'download'])->name('pesanan.cancel');
+    Route::get('/pesanan/{order}/cancel', [\App\Http\Controllers\PesananController::class, 'cancel'])->name('pesanan.cancel');
+    Route::get('/pesanan/{order}/done', [\App\Http\Controllers\PesananController::class, 'done'])->name('pesanan.done');
+    Route::post('/pesanan/{order:order_id}/pay', [\App\Http\Controllers\PesananController::class, 'pay'])->name('pesanan.pay');
     Route::post('/pesanan', [\App\Http\Controllers\PesananController::class, 'store'])->name('pesanan.store');
+    Route::post('/xendit/payment/handle', [\App\Http\Controllers\PesananController::class, 'handleXendit'])->name('payment.handle.notification');
 
 
     Route::get('/pemesanan', [\App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan.index');

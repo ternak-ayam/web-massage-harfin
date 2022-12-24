@@ -226,7 +226,8 @@
                     </div>
                     <div class="my-2">
                         <label for="" class="font-semibold">Metode Pembayaran</label>
-                        @include('components.field.checkbox', ['label' => 'components.field.label-inline', 'name' => 'channel', 'title' => 'Cash', 'id' => 'payment_method', 'value' => 'cash'])
+                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'name' => 'channel', 'title' => 'COD/Cash (Diwajibkan deposit sebesar Rp20.000 untuk jaminan)', 'id' => 'payment_method_cod', 'value' => 'cod'])
+                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'name' => 'channel', 'title' => 'OVO/DANA', 'id' => 'payment_method_xendit', 'value' => 'xendit'])
                     </div>
                 </div>
             @include('layouts.payment-action-bottom')

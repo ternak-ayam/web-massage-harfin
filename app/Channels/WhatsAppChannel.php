@@ -27,7 +27,7 @@ class WhatsAppChannel
             "body" => $message->content
         ];
 
-//        if(isset($message->media)) $options += ["mediaUrl" => $message->media];
+        if(isset($message->media)) $options += ["mediaUrl" => $message->media];
 
         return $twilio->messages->create('whatsapp:' . $to, $options);
     }

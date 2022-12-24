@@ -5,11 +5,32 @@
     <form method="post">
         @csrf
         <div class="w-full container h-screen m-auto items-center flex">
-            <div class="container m-auto items-center max-w-lg p-4 rounded-lg">
-                <div class="text-2xl font-semibold text-center mb-4">Pesananmu Berhasil!</div>
+            <div class="container m-auto items-center p-4 rounded-lg">
+                <div class="text-2xl font-semibold text-center mb-4">
+                    Pesananmu <br>
+                    @if($order->isSettle())
+                        Berhasil!
+                    @elseif($order->isPending())
+                        Menunggu Pembayaran
+                    @elseif($order->isDone())
+                        Selesai
+                    @else
+                        Dibatalkan!
+                    @endif
+                </div>
                 <div class="text-center">
-                    <img class="mx-auto" src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Check-Logo.png"
-                         alt="Check Logo">
+                    @if($order->isSettle() || $order->isDone())
+                        <img class="mx-auto" width="180"
+                             src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Check-Logo.png"
+                             alt="Check Logo">
+                    @elseif($order->isPending())
+                        <img class="mx-auto" width="180"
+                             src="https://icones.pro/wp-content/uploads/2021/03/symbole-de-l-horloge-jaune.png"
+                             alt="Check Logo">
+                    @else
+                        <img class="mx-auto" width="180" src="https://cdn-icons-png.flaticon.com/512/391/391045.png"
+                             alt="Check Logo">
+                    @endif
                     <div class="mt-2">
                         <div class="text-lg font-semibold text-center mb-2">Detail Pesanan</div>
                         <div class="grid grid-cols-2 gap-4 text-lg">
@@ -66,13 +87,17 @@
                                 Metode Pembayaran:
                             </div>
                             <div class="text-left">
-                                {{ Str::ucfirst($order->channel) }}
+                                @if($order->channel === \App\Models\Order::XENDIT)
+                                    OVO/DANA
+                                @else
+                                    {{ Str::upper($order->channel) }} <span class="text-red-600 text-xs">(Khusus metode pembayaran COD, Anda harus deposit uang jaminan sebesar {{ 'Rp' . number_format(env('DOWN_PAYMENT_AMOUNT'), 0, ',', '.') }})</span>
+                                @endif
                             </div>
                         </div>
                         <div class="mt-4 text-base text-red-600">
                             @if($order->canCancel())
                                 Anda hanya dapat membatalkan pesanan dalam <span class="minute">3</span> Menit
-                            @else
+                            @elseif(! $order->isCancel())
                                 Anda tidak dapat membatalkan pesanan ini
                             @endif
                         </div>
@@ -82,10 +107,15 @@
                     @if($order->canCancel())
                         @include('components.button.danger-button', ['title' => 'Batalkan Pesanan', 'formaction' => route('pesanan.cancel', $order->order_id)])
                     @endif
-                    @include('components.button.primary-a', ['title' => 'Lihat Daftar Pesanan', 'href' => route('pemesanan.index')])
-                    <div class="mt-4">
-                        @include('components.button.primary-a', ['title' => 'Download Struk', 'href' => $order->invoice, 'target' => '_blank'])
-                    </div>
+                    @include('components.button.primary-a', ['title' => 'Lihat Daftar Transaksi', 'href' => route('pemesanan.index')])
+                    @if($order->isPending())
+                        @include('components.button.success-a', ['title' => $order->channel === \App\Models\Order::XENDIT ? 'Bayar' : 'Bayar uang jaminan', 'href' => $order->payment_path, 'target' =>'_blank'])
+                    @endif
+                    @if($order->isSettle())
+                        <div class="mt-4">
+                            @include('components.button.primary-a', ['title' => 'Download Struk', 'href' => $order->invoice, 'target' => '_blank'])
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

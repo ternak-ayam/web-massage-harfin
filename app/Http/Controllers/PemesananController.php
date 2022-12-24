@@ -9,10 +9,24 @@ class PemesananController extends Controller
 {
     public function index()
     {
-        $orders = Order::orderby('id', 'DESC')->paginate(10);
+        $type = \request()->get('type') ?? 'active';
+
+        if($type === 'active') {
+            $orders = Order::where('status', '<>', Order::DONE)->orderby('id', 'DESC')->paginate(5);
+        } else {
+            $orders = Order::whereIn('status', [Order::DONE, Order::CANCEL])->orderby('id', 'DESC')->paginate(5);
+        }
 
         return view('pemesanan.index', [
-            'orders' => $orders
+            'orders' => $orders,
+            'type'  => $type
+        ]);
+    }
+
+    public function show(Order $order)
+    {
+        return view('pemesanan.show', [
+            'order' => $order
         ]);
     }
 }

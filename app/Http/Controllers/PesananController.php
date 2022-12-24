@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\SendAdminNotification;
+use App\Http\Traits\XenditPayment;
 use App\Models\AdditionalOrder;
 use App\Models\AdditionalService;
 use App\Models\Order;
@@ -10,14 +12,16 @@ use App\Models\OrderRequirement;
 use App\Models\Service;
 use App\Models\ServiceDetail;
 use App\Models\Traits\CreateInvoicePdf;
+use App\Notifications\SendOrderCancelConfirmation;
 use App\Notifications\SendOrderConfirmationNotification;
+use App\Notifications\SendOrderDoneConfirmation;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
 class PesananController extends Controller
 {
-    use CreateInvoicePdf;
+    use CreateInvoicePdf, XenditPayment, SendAdminNotification;
 
     public function show(Request $request, Service $service)
     {
@@ -35,6 +39,30 @@ class PesananController extends Controller
         return view('pesanan.after-order', [
             'order' => $order,
         ]);
+    }
+
+    public function cancel(Order $order)
+    {
+        $order->update([
+            'status' => Order::CANCEL
+        ]);
+
+        $order->buyer->notify(new SendOrderCancelConfirmation($order));
+        $this->send(new SendOrderCancelConfirmation($order));
+
+        return back();
+    }
+
+    public function done(Order $order)
+    {
+        $order->update([
+            'status' => Order::DONE
+        ]);
+
+        $order->buyer->notify(new SendOrderDoneConfirmation($order));
+        $this->send(new SendOrderDoneConfirmation($order));
+
+        return back();
     }
 
     public function store(Request $request)
@@ -56,7 +84,7 @@ class PesananController extends Controller
             $order = new Order();
 
             $order->fill([
-                'order_id' => rand(),
+                'order_id' => now()->timestamp . rand(0, 9),
                 'user_id' => $request->user()->id,
                 'service_id' => $service->id,
                 'channel' => $request->channel,
@@ -106,11 +134,13 @@ class PesananController extends Controller
 
             $invoiceUrl = $this->createInvoice($order, $orderDetails, $additionalOrders, $orderReq);
 
+            $paymentUrl = $this->processXenditTransaction($order, $order->channel);
+
             $order->update([
                 'invoice' => $invoiceUrl,
             ]);
 
-            $request->user()->notify(new SendOrderConfirmationNotification($order));
+            $request->user()->notify(new SendOrderConfirmationNotification($order, $paymentUrl));
 
             return redirect(route('pesanan.success', $order->order_id));
     }

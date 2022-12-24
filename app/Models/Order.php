@@ -20,14 +20,18 @@ class Order extends Model
         'discount',
         'total',
         'invoice',
-        'status',
+        'payment_path',
         'cancel_expired',
+        'status',
     ];
 
     const PENDING = "menunggu_pembayaran";
     const SETTLE  = "sukses";
     const DONE    = "selesai";
     const CANCEL  = "dibatalkan";
+
+    const XENDIT  = "xendit";
+    const COD     = "cod";
 
     protected $attributes = [
         'status' => self::PENDING,
@@ -40,6 +44,26 @@ class Order extends Model
     public function canCancel()
     {
         return $this->cancel_expired->timestamp > now()->timestamp;
+    }
+
+    public function isSettle()
+    {
+        return $this->status === self::SETTLE;
+    }
+
+    public function isDone()
+    {
+        return $this->status === self::DONE;
+    }
+
+    public function isPending()
+    {
+        return $this->status === self::PENDING;
+    }
+
+    public function isCancel()
+    {
+        return $this->status === self::CANCEL;
     }
 
     public function getSubtotalFormattedPrice()
@@ -57,6 +81,11 @@ class Order extends Model
         return $this->formattedPrice($this->total);
     }
 
+    public function getFormattedServiceDue()
+    {
+        return $this->requirement['service_due']->timezone('Asia/Jakarta')->toDayDateTimeString();
+    }
+
     public function service()
     {
         return $this->belongsTo(Service::class, 'service_id');
@@ -70,5 +99,15 @@ class Order extends Model
     public function additionals()
     {
         return $this->hasMany(AdditionalOrder::class, 'order_id');
+    }
+
+    public function requirement()
+    {
+        return $this->hasOne(OrderRequirement::class, 'order_id');
+    }
+
+    public function buyer()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

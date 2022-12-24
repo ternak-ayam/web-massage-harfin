@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SendOrderConfirmationNotification extends Notification
+class SendOrderCancelConfirmation extends Notification
 {
     use Queueable;
 
@@ -19,12 +19,10 @@ class SendOrderConfirmationNotification extends Notification
      * @return void
      */
     public $order;
-    public $payment_url;
 
-    public function __construct($order, $paymentUrl)
+    public function __construct($order)
     {
         $this->order = $order;
-        $this->payment_url = $paymentUrl;
     }
 
     /**
@@ -47,7 +45,7 @@ class SendOrderConfirmationNotification extends Notification
     public function toWhatsApp($notifiable)
     {
         return (new WhatsAppMessage)
-            ->content("Order anda {$this->order->order_id} dengan total {$this->order->getTotalFormattedPrice()} telah berhasil dibuat. Segera lakukan pembayaran pada link berikut {$this->payment_url}. Terima kasih");
+            ->content("Pesanan dengan Order ID {$this->order->order_id} telah dibatalkan.");
     }
 
     /**
