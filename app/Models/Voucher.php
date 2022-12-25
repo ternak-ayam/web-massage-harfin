@@ -21,4 +21,7 @@ class Voucher extends Model
         'min_order',
         'used_at'
     ];
+
+    const PERCENT = "percent";
+    const DOUBLE  = "double";
 }

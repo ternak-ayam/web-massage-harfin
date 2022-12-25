@@ -18,7 +18,10 @@ class Order extends Model
         'channel',
         'subtotal',
         'discount',
+        'down_payment',
         'total',
+        'paid',
+        'remain',
         'invoice',
         'payment_path',
         'cancel_expired',
@@ -40,6 +43,16 @@ class Order extends Model
     protected $dates = [
         'cancel_expired',
     ];
+
+    public function hasDp()
+    {
+        return $this->down_payment > 0;
+    }
+
+    public function needDp($channel = null)
+    {
+        return ($channel ?? $this->channel) === self::COD;
+    }
 
     public function canCancel()
     {
@@ -79,6 +92,21 @@ class Order extends Model
     public function getTotalFormattedPrice()
     {
         return $this->formattedPrice($this->total);
+    }
+
+    public function getPaidFormattedPrice()
+    {
+        return $this->formattedPrice($this->paid);
+    }
+
+    public function getDpFormattedPrice()
+    {
+        return $this->formattedPrice($this->down_payment);
+    }
+
+    public function getRemainFormattedPrice()
+    {
+        return $this->formattedPrice($this->remain);
     }
 
     public function getFormattedServiceDue()

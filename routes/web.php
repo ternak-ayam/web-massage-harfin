@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/pesanan/detail/{order:order_id}', [\App\Http\Controllers\PemesananController::class, 'show'])->name('pemesanan.show');
     Route::get('/pesanan/success/{order:order_id}', [\App\Http\Controllers\PesananController::class, 'success'])->name('pesanan.success');
     Route::get('/pesanan/{service:slug}', [\App\Http\Controllers\PesananController::class, 'show'])->name('pesanan.show');
-    Route::get('/pesanan/{order}/cancel', [\App\Http\Controllers\PesananController::class, 'cancel'])->name('pesanan.cancel');
+    Route::get('/pesanan/{order:order_id}/cancel', [\App\Http\Controllers\PesananController::class, 'cancel'])->name('pesanan.cancel');
     Route::get('/pesanan/{order}/done', [\App\Http\Controllers\PesananController::class, 'done'])->name('pesanan.done');
     Route::post('/pesanan/{order:order_id}/pay', [\App\Http\Controllers\PesananController::class, 'pay'])->name('pesanan.pay');
     Route::post('/pesanan', [\App\Http\Controllers\PesananController::class, 'store'])->name('pesanan.store');

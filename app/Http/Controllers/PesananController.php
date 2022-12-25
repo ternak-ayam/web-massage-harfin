@@ -12,10 +12,10 @@ use App\Models\OrderRequirement;
 use App\Models\Service;
 use App\Models\ServiceDetail;
 use App\Models\Traits\CreateInvoicePdf;
+use App\Models\Voucher;
 use App\Notifications\SendOrderCancelConfirmation;
 use App\Notifications\SendOrderConfirmationNotification;
 use App\Notifications\SendOrderDoneConfirmation;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -30,6 +30,7 @@ class PesananController extends Controller
         return view('pesanan.show', [
             'service' => $service,
             'user' => $request->user(),
+            'vouchers' => $request->user()->vouchers()->where('quantity', '>', 0)->get(),
             'cities' => json_decode($cities, true)['provinsi'],
         ]);
     }
@@ -67,8 +68,15 @@ class PesananController extends Controller
 
     public function store(Request $request)
     {
+        $order = new Order();
+
+        $discount = 0;
+        $downPayment = 0;
         $additionalServiceTotalPrice = 0;
+
         $service = Service::where('slug', $request->service)->first();
+
+        $voucher = Voucher::where([['code', $request->voucher], ['user_id', $request->user()->id]])->first();
 
         $serviceDetails = ServiceDetail::whereIn('id', $request->service_details)->get();
         $additionalServices = AdditionalService::whereIn('id', $request->additional_services)->get();
@@ -78,70 +86,83 @@ class PesananController extends Controller
         }
 
         $subtotal = $serviceDetails->sum('price') + $additionalServiceTotalPrice;
-        $discount = 0;
+
+        if(! blank($voucher)) {
+            if($voucher->amount_type === Voucher::PERCENT) {
+                $discount = $subtotal * $voucher->amount;
+            } else if($voucher->amount_type === Voucher::DOUBLE) {
+                $discount = $voucher->amount;
+            }
+        }
+
+        if ($order->needDp($request->channel)) {
+            $downPayment = env('DOWN_PAYMENT_AMOUNT');
+        }
+
         $total = $subtotal - $discount;
 
-            $order = new Order();
+        $order->fill([
+            'order_id' => now()->timestamp . rand(0, 9),
+            'user_id' => $request->user()->id,
+            'service_id' => $service->id,
+            'channel' => $request->channel,
+            'subtotal' => $subtotal,
+            'discount' => $discount,
+            'down_payment' => $downPayment,
+            'total' => $total,
+            'remain' => $total,
+            'cancel_expired' => now()->addMinutes(3)
+        ]);
 
-            $order->fill([
-                'order_id' => now()->timestamp . rand(0, 9),
-                'user_id' => $request->user()->id,
-                'service_id' => $service->id,
-                'channel' => $request->channel,
-                'subtotal' => $subtotal,
-                'discount' => $discount,
-                'total' => $total,
-                'cancel_expired' => now()->addMinutes(3)
-            ]);
+        $order->saveOrFail();
 
-            $order->saveOrFail();
+        $orderReq = OrderRequirement::create([
+            'order_id' => $order->id,
+            'name' => $request->user_name,
+            'customer_sex' => $request->customer_sex,
+            'phone' => explode('+', $request->phone)[1],
+            'city' => $request->city,
+            'address' => $request->address,
+            'service_due' => $request->date . ' ' . $request->time . ':00',
+            'therapist_sex' => $request->therapist_sex,
+            'style_type_sex' => $request->style_type_sex,
+            'notes' => $request->notes,
+        ]);
 
-            $orderReq = OrderRequirement::create([
+        foreach ($serviceDetails as $serviceDetail) {
+            OrderDetail::create([
                 'order_id' => $order->id,
-                'name' => $request->user_name,
-                'customer_sex' => $request->customer_sex,
-                'phone' => explode('+', $request->phone)[1],
-                'city' => $request->city,
-                'address' => $request->address,
-                'service_due' => $request->date . ' ' . $request->time . ':00',
-                'therapist_sex' => $request->therapist_sex,
-                'style_type_sex' => $request->style_type_sex,
-                'notes' => $request->notes,
+                'service_detail_id' => $serviceDetail->id,
+                'service_name' => $serviceDetail->title,
+                'price' => $serviceDetail->price,
             ]);
+        }
 
-            foreach ($serviceDetails as $serviceDetail) {
-                OrderDetail::create([
-                    'order_id' => $order->id,
-                    'service_detail_id' => $serviceDetail->id,
-                    'service_name' => $serviceDetail->title,
-                    'price' => $serviceDetail->price,
-                ]);
-            }
-
-            foreach ($additionalServices as $key => $additionalService) {
-                AdditionalOrder::create([
-                    'order_id' => $order->id,
-                    'additional_service_id' => $additionalService->id,
-                    'service_name' => $additionalService->name,
-                    'price' => $additionalService->price,
-                    'quantity' => $request->quantity[$additionalService->id],
-                    'subtotal' => $additionalService->price * $request->quantity[$additionalService->id],
-                ]);
-            }
-
-            $orderDetails = OrderDetail::where('order_id', $order->id)->get();
-            $additionalOrders = AdditionalOrder::where('order_id', $order->id)->get();
-
-            $invoiceUrl = $this->createInvoice($order, $orderDetails, $additionalOrders, $orderReq);
-
-            $paymentUrl = $this->processXenditTransaction($order, $order->channel);
-
-            $order->update([
-                'invoice' => $invoiceUrl,
+        foreach ($additionalServices as $additionalService) {
+            AdditionalOrder::create([
+                'order_id' => $order->id,
+                'additional_service_id' => $additionalService->id,
+                'service_name' => $additionalService->name,
+                'price' => $additionalService->price,
+                'quantity' => $request->quantity[$additionalService->id],
+                'subtotal' => $additionalService->price * $request->quantity[$additionalService->id],
             ]);
+        }
 
-            $request->user()->notify(new SendOrderConfirmationNotification($order, $paymentUrl));
+        $orderDetails = OrderDetail::where('order_id', $order->id)->get();
+        $additionalOrders = AdditionalOrder::where('order_id', $order->id)->get();
 
-            return redirect(route('pesanan.success', $order->order_id));
+        $invoiceUrl = $this->createInvoice($order, $orderDetails, $additionalOrders, $orderReq);
+
+        $paymentUrl = $this->processXenditTransaction($order, $order->channel);
+
+        $order->update([
+            'invoice' => $invoiceUrl,
+            'payment_path' => $paymentUrl
+        ]);
+
+        $request->user()->notify(new SendOrderConfirmationNotification($order, $paymentUrl));
+
+        return redirect(route('pesanan.success', $order->order_id));
     }
 }

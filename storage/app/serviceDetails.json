@@ -221,6 +221,12 @@
                 "image": "img",
                 "price": 100000,
                 "duration": "2 Jam"
+            },
+            {
+                "name": "Botak halus",
+                "image": "img",
+                "price": 95000,
+                "duration": "2 Jam"
             }
         ],
         "additionals": [
@@ -250,7 +256,14 @@
                 "image": "img",
                 "price": 6000,
                 "duration": "",
-                "description": "mencukur dan merapikan kumis dan jenggot."
+                "description": "Mencukur dan merapikan kumis dan jenggot."
+            },
+            {
+                "name": "Hair Vitamin.",
+                "image": "img",
+                "price": 15000,
+                "duration": "",
+                "description": "Vitamin untuk mengatasi rambut kering, rusak, bercabang, dan rontok."
             }
         ]
     }

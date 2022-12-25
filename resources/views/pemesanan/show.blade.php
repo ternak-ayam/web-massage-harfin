@@ -128,6 +128,30 @@
                             </p>
                         </div>
                     </div>
+                    <div class="px-4 py-2 grid grid-cols-2 gap-2 border-t">
+                        <div>
+                            <p class="text-gray-700 text-base">
+                                Dibayar
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-green-500 text-base text-right">
+                                -{{ $order->getPaidFormattedPrice() }}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-4 py-2 grid grid-cols-2 gap-2 border-t">
+                        <div>
+                            <p class="text-gray-700 text-base">
+                                Sisa
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-gray-700 text-base text-right">
+                                {{ $order->getRemainFormattedPrice() }}
+                            </p>
+                        </div>
+                    </div>
                     <div class="px-4 py-2 pb-4 grid grid-cols-2 gap-2 border-t">
                         <div class="my-auto">
                             <p class="text-gray-700 text-base">

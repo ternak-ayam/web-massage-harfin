@@ -31,6 +31,10 @@ trait CreateInvoicePdf {
             $items[] = (new InvoiceItem())->title($item->service_name)->pricePerUnit($item->price)->quantity($item->quantity);
         }
 
+        if($order->hasDp()) {
+            $items[] = (new InvoiceItem())->title("Uang Jaminan")->pricePerUnit(-$order->down_payment)->quantity(1);
+        }
+
         $invoice = Invoice::make()
             ->buyer($customer)
             ->addItems($items)

@@ -8,6 +8,8 @@ class VoucherController extends Controller
 {
     public function index()
     {
-        return view('voucher.index');
+        return view('voucher.index', [
+            'vouchers' => \request()->user()->vouchers()->where('quantity', '>', 0)->get()
+        ]);
     }
 }

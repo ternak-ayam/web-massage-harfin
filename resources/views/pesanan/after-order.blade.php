@@ -82,6 +82,16 @@
                                 {{ $order->getTotalFormattedPrice() }}
                             </div>
                         </div>
+                        @if($order->hasDp())
+                            <div class="grid grid-cols-2 gap-4 text-lg">
+                                <div class="text-right">
+                                    Uang Jaminan:
+                                </div>
+                                <div class="text-left">
+                                    {{ $order->getDpFormattedPrice() }}
+                                </div>
+                            </div>
+                        @endif
                         <div class="grid grid-cols-2 gap-4 text-lg">
                             <div class="text-right">
                                 Metode Pembayaran:
@@ -95,17 +105,19 @@
                             </div>
                         </div>
                         <div class="mt-4 text-base text-red-600">
-                            @if($order->canCancel())
-                                Anda hanya dapat membatalkan pesanan dalam <span class="minute">3</span> Menit
-                            @elseif(! $order->isCancel())
-                                Anda tidak dapat membatalkan pesanan ini
+                            @if(! $order->isCancel())
+                                @if($order->canCancel())
+                                    Anda hanya dapat membatalkan pesanan dalam <span class="minute">3</span> Menit
+                                @elseif(! $order->isCancel())
+                                    Anda tidak dapat membatalkan pesanan ini
+                                @endif
                             @endif
                         </div>
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    @if($order->canCancel())
-                        @include('components.button.danger-button', ['title' => 'Batalkan Pesanan', 'formaction' => route('pesanan.cancel', $order->order_id)])
+                    @if($order->canCancel() || !$order->isCancel())
+                        @include('components.button.danger-a', ['title' => 'Batalkan Pesanan', 'href' => route('pesanan.cancel', $order->order_id)])
                     @endif
                     @include('components.button.primary-a', ['title' => 'Lihat Daftar Transaksi', 'href' => route('pemesanan.index')])
                     @if($order->isPending())
