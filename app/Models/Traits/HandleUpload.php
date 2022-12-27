@@ -35,7 +35,7 @@ trait HandleUpload
 
     public function imageAttribute(): string
     {
-        return 'photo';
+        return 'image';
     }
 
     public function deleteLatestImage(): void

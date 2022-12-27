@@ -11,7 +11,7 @@
         </marquee>
     </div>
     <div class="container flex justify-center m-auto mt-8 mb-8 gap-2 flex-wrap">
-        <a href="/">
+        <a href="{{ route('pesanan.show', 'hair-care') }}">
             <div class="bg-[#0BA2D4] p-2 rounded-full flex justify-center flex-col">
                 <img src="{{ asset('assets/icon/hair-cutting.png')}}" class="scale-50" alt="">
             </div>
@@ -19,7 +19,7 @@
                 Hair Care
             </div>
         </a>
-        <a href="/">
+        <a href="{{ route('pesanan.show', 'massage') }}">
             <div class="bg-[#0BA2D4] p-2 rounded-full flex justify-center flex-col">
                 <img src="{{ asset('assets/icon/body-massage.png')}}" class="scale-50" alt="">
             </div>
@@ -27,15 +27,15 @@
                 Message
             </div>
         </a>
-        <a href="/">
+        <a href="{{ route('pesanan.show', 'reflexology') }}">
             <div class="bg-[#0BA2D4] p-2 rounded-full flex justify-center flex-col">
                 <img src="{{ asset('assets/icon/radiology.png')}}" class="scale-50" alt="">
             </div>
             <div class="text-[0.7rem] text-white bg-[#0BA2D4]  rounded-lg mt-2 text-center p-1">
-                Reflexiology
+                Reflexology
             </div>
         </a>
-        <a href="/">
+        <a href="{{ route('pesanan.show', 'hair-care') }}">
             <div class="bg-[#0BA2D4] p-2 rounded-full flex justify-center flex-col">
                 <img src="{{ asset('assets/icon/hair-cut.png')}}" class="scale-50" alt="">
             </div>
@@ -60,7 +60,7 @@
                             <div
                                 class="aspect-w-1 aspect-h-1 h-28 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8 border">
                                 <img
-                                    src="{{ $category->image }}"
+                                    src="{{ $category->getImageUrl() }}"
                                     alt="{{ $category->name }}"
                                     class="h-full w-full object-cover object-center group-hover:opacity-75">
                             </div>

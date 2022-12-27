@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\HandleUpload;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, HandleUpload;
 
     protected $fillable = [
         'slug',
@@ -15,6 +16,11 @@ class Category extends Model
         'image',
         'service_id',
     ];
+
+    public function getImagePath(): string
+    {
+        return 'assets';
+    }
 
     public function service()
     {

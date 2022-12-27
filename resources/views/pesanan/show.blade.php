@@ -109,17 +109,17 @@
             <div class="w-full">
                 <div class="mt-2">
                     @foreach($service->details as $key => $detail)
-                        <label for="service_detail{{ $key }}" class="w-full lg:max-w-full lg:flex cursor-pointer my-1">
+                        <label for="service_detail{{ $key }}" class="w-full lg:max-w-full lg:flex cursor-pointer my-2">
                             <input id="service_detail{{ $key }}" type="checkbox" class="hidden service-bg"
                                    data-price="{{ $detail->price }}" name="service_details[]" value="{{ $detail->id }}">
                             <div
                                 class="h-48 lg:h-auto lg:w-48 border-black border border-r-0 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-                                style="background-image: url('https://awsimages.detik.net.id/community/media/visual/2022/02/24/ilustrasi-spa_169.jpeg?w=700&q=90')"
+                                style="background-image: url({{ $detail->getImageUrl() }})"
                                 title="{{ $detail->title }}">
                             </div>
                             <div
                                 id="service-bg{{ $key }}"
-                                class="relative md:w-1/4 w-full border-r border-b border-l border-black lg:border-l-0 lg:border-t lg:border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                                class="mb-2 relative md:w-1/4 w-full border-r border-b border-l border-black lg:border-l-0 lg:border-t lg:border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                                 <div class="mb-8">
                                     <div class="font-bold text-xl mb-2">{{ $detail->title }}</div>
                                     <p class="text-base">Durasi: {{ $detail->duration }}</p>
@@ -138,18 +138,18 @@
             <div class="mt-2">
                 @foreach($service->additionals as $key => $additional)
                     <label for="additional_services{{ $key }}"
-                           class="lg:w-[50rem] sm:w-full lg:max-w-full lg:flex relative my-1">
+                           class="lg:w-[50rem] sm:w-full lg:max-w-full lg:flex relative my-2">
                         <input type="checkbox" id="additional_services{{ $key }}" class="hidden additional_services"
                                name="additional_services[]" data-price="{{ $additional->price }}"
                                value="{{ $additional->id }}">
                         <div
                             class="h-48 lg:h-auto lg:w-48 border-black border border-r-0 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-                            style="background-image: url('https://awsimages.detik.net.id/community/media/visual/2022/02/24/ilustrasi-spa_169.jpeg?w=700&q=90')"
+                            style="background-image: url({{ $additional->getImageUrl() }})"
                             title="Mountain">
                         </div>
                         <div
                             id="additional_services_bg{{ $key }}"
-                            class="w-full border-r border-b border-l lg:border-l-0 lg:border-t border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                            class="mb-2 w-full border-r border-b border-l lg:border-l-0 lg:border-t border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                             <div class="mb-12">
                                 <div class="text-gray-900 font-bold text-xl">{{ $additional->name }}</div>
                                 @if($additional->name === "Matras")

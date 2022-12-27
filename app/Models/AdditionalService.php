@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Models\Traits\GetPrice;
+use App\Models\Traits\HandleUpload;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class AdditionalService extends Model
 {
-    use HasFactory, GetPrice;
+    use HasFactory, GetPrice, HandleUpload;
 
     protected $fillable = [
         'service_id',
@@ -19,4 +20,9 @@ class AdditionalService extends Model
         'description',
         'deleted_at',
     ];
+
+    public function getImagePath(): string
+    {
+        return 'assets';
+    }
 }
