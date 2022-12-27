@@ -23,7 +23,7 @@
                        class="w-full my-2 shadow bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                         <div class="flex gap-4">
                             <div>
-                                <img class="rounded-full w-12 h-12 lg:w-20 lg:h-20" src="{{ $order->service['image'] }}"
+                                <img class="rounded-full object-cover w-12 h-12 lg:w-20 lg:h-20" src="{{ $order->service->getImageUrl() }}"
                                      alt="Image">
                             </div>
                             <div>

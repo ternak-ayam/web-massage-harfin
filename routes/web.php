@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/pesanan/success/{order:order_id}', [\App\Http\Controllers\PesananController::class, 'success'])->name('pesanan.success');
     Route::get('/pesanan/{service:slug}', [\App\Http\Controllers\PesananController::class, 'show'])->name('pesanan.show');
     Route::get('/pesanan/{order:order_id}/cancel', [\App\Http\Controllers\PesananController::class, 'cancel'])->name('pesanan.cancel');
-    Route::get('/pesanan/{order}/done', [\App\Http\Controllers\PesananController::class, 'done'])->name('pesanan.done');
+    Route::get('/pesanan/{order:order_id}/done', [\App\Http\Controllers\PesananController::class, 'done'])->name('pesanan.done');
     Route::post('/pesanan', [\App\Http\Controllers\PesananController::class, 'store'])->name('pesanan.store');
     Route::post('/xendit/payment/handle', [\App\Http\Controllers\PesananController::class, 'handleXendit'])->name('payment.handle.notification');
 

@@ -169,6 +169,19 @@
                         </div>
                     </div>
                 </div>
+                <div class="text-center mt-4">
+                    @if($order->canCancel() && !$order->isCancel())
+                        @include('components.button.danger-a', ['title' => 'Batalkan Pesanan', 'href' => route('pesanan.cancel', $order->order_id)])
+                    @endif
+                    @if($order->isPending())
+                        @include('components.button.success-a', ['title' => $order->channel === \App\Models\Order::XENDIT ? 'Bayar' : 'Bayar uang jaminan', 'href' => $order->payment_path, 'target' =>'_blank'])
+                    @endif
+                    @if($order->isSettle())
+                        <div class="mt-4">
+                            @include('components.button.success-a', ['title' => 'Selesai', 'href' => route('pesanan.done', $order->order_id)])
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     </div>
