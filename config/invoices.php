@@ -80,7 +80,7 @@ return [
         'attributes' => [
             'name'          => config('app.name'),
             'address'       => 'Indonesia',
-            'phone'         => '760-355-3930',
+            'phone'         => '+62 8387 3111 452',
             'custom_fields' => [
                 /*
                  * Custom attributes for Seller::class

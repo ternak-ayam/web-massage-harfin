@@ -2,6 +2,7 @@
 
 namespace App\Http\Traits;
 
+use App\Models\Donation;
 use App\Models\Order;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +28,7 @@ trait XenditPayment
         }
 
         $params = [
-            'external_id' => (string) $order->order_id,
+            'external_id' => (string)$order->order_id,
             'amount' => $gross_amount,
             'description' => 'Order for' . ($payment_method === Order::XENDIT ? ' booking ' : ' down payment ') . $order->service['name'] . ' from ' . $user->name,
             'customer' => [
@@ -44,6 +45,42 @@ trait XenditPayment
         ];
 
         return Invoice::create($params);
+    }
+
+    public function createDonation($request)
+    {
+        $user = auth()->user();
+
+        $params = [
+            'external_id' => now()->timestamp . rand(0, 9),
+            'amount' => (double)$request->amount,
+            'description' => 'Donation from ' . $user->name,
+            'customer' => [
+                'given_names' => $user->name,
+                'email' => $user->email,
+                'mobile_number' => $user->getPhoneNumber(),
+            ],
+            'payment_methods' => ['OVO', 'DANA', 'QRIS'],
+            'locale' => 'id',
+            'success_redirect_url' => url('/'),
+            'failure_redirect_url' => url('/'),
+            'currency' => 'IDR',
+            'items' => [
+                [
+                    'price' => (double) $request->amount,
+                    'quantity' => 1,
+                    'name' => "Donasi",
+                ]
+            ]
+        ];
+
+        $invoice = Invoice::create($params);
+
+        return Donation::create([
+            'user_id' => $user->id,
+            'amount' => $request->amount,
+            'path' => $invoice['invoice_url']
+        ]);
     }
 
     public function processXenditTransaction($order, $payment_method)

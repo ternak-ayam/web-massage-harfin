@@ -106,7 +106,7 @@
         </form>
     </div>
     <div class="my-12">
-        <form action="" method="post">
+        <form action="{{ route('donation.pay') }}" method="post">
             @csrf
             <h1 class="text-xl text-center text-gray-800"><span
                     class="font-light">Silakan masukkan jumlah donasi yang akan kamu berikan</span></h1>
