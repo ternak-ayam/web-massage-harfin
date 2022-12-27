@@ -1,33 +1,33 @@
 [
     {
         "name": "Massage",
-        "image": "..",
+        "image": "massage_1.jpeg",
         "categories": [
             {
                 "name": "Massage 1",
-                "image": ".."
+                "image": "massage_1.jpeg"
             },
             {
                 "name": "Massage 2",
-                "image": ".."
+                "image": "massage_2.webp"
             }
         ],
         "details": [
             {
                 "name": "Body Massage",
-                "image": "img",
+                "image": "massage_1.jpeg",
                 "price": 104000,
                 "duration": "1 Jam"
             },
             {
                 "name": "Body Massage",
-                "image": "img",
+                "image": "massage_1.jpeg",
                 "price": 154000,
                 "duration": "1.5 Jam"
             },
             {
                 "name": "Body Massage",
-                "image": "img",
+                "image": "massage_1.jpeg",
                 "price": 180000,
                 "duration": "2 Jam"
             }
@@ -35,49 +35,49 @@
         "additionals": [
             {
                 "name": "Reflexi kaki",
-                "image": "img",
+                "image": "kaki.jpeg",
                 "price": 40000,
                 "duration": "30 Menit",
                 "description": "Pijat telapak kak, betis, dan paha dengan cream."
             },
             {
                 "name": "Light massage",
-                "image": "img",
+                "image": "light.webp",
                 "price": 30000,
                 "duration": "30 Menit",
                 "description": "Pijat kering tanpa minyak meliputi leher, pundak,kepala, punggung."
             },
             {
                 "name": "Kerokan",
-                "image": "img",
+                "image": "kerokan.jpeg",
                 "price": 20000,
                 "duration": "20 Menit",
                 "description": "Membuka pori pori kulit agar angin dan panas dalam tubuh keluar dengan sendirinya."
             },
             {
                 "name": "Scrub / lulur",
-                "image": "img",
+                "image": "scrub.jpeg",
                 "price": 40000,
                 "duration": "30 Menit",
                 "description": "Membuang dan membuka pori pori kulit yang sudah mati dan melembutkan kulit."
             },
             {
                 "name": "Hand spa Reflexology",
-                "image": "img",
+                "image": "handspa.webp",
                 "price": 35000,
                 "duration": "30 Menit",
                 "description": "Pijat telapak tangan sampai ke lengan atas untuk melancarkan darah di urat saraf."
             },
             {
                 "name": "Totok Wajah",
-                "image": "img",
+                "image": "totok.jpeg",
                 "price": 35000,
                 "duration": "30 Menit",
                 "description": "Menekan dan menarik titik titik urat saraf dalam area wajah dan di sekitar area kepala."
             },
             {
                 "name": "Matras",
-                "image": "img",
+                "image": "matras.jpg",
                 "price": 9900,
                 "duration": "",
                 "description": ""
@@ -86,33 +86,33 @@
     },
     {
         "name": "Reflexology",
-        "image": "..",
+        "image": "reflexology_1.jpeg",
         "categories": [
             {
                 "name": "Reflexology 1",
-                "image": ".."
+                "image": "reflexology_1.jpeg"
             },
             {
                 "name": "Reflexology 2",
-                "image": ".."
+                "image": "reflexology_2.jpeg"
             }
         ],
         "details": [
             {
                 "name": "Reflexology 1",
-                "image": "img",
+                "image": "reflexology_1.jpeg",
                 "price": 80000,
                 "duration": "1 Jam"
             },
             {
                 "name": "Reflexology 2",
-                "image": "img",
+                "image": "reflexology_2.jpeg",
                 "price": 120000,
                 "duration": "1.5 Jam"
             },
             {
                 "name": "Reflexology 3",
-                "image": "img",
+                "image": "reflexology_3.webp",
                 "price": 155000,
                 "duration": "2 Jam"
             }
@@ -120,42 +120,42 @@
         "additionals": [
             {
                 "name": "Light massage",
-                "image": "img",
+                "image": "light.webp",
                 "price": 30000,
                 "duration": "30 Menit",
                 "description": "Pijat kering tanpa minyak meliputi leher, pinggang, pundak, kepala."
             },
             {
                 "name": "Hand spa Reflexology",
-                "image": "img",
+                "image": "handspa.webp",
                 "price": 35000,
                 "duration": "30 Menit",
                 "description": "Pijat reflexi telapak tangan sampai lengan atas."
             },
             {
                 "name": "Totok Wajah",
-                "image": "img",
+                "image": "totok.jpeg",
                 "price": 35000,
                 "duration": "30 Menit",
                 "description": "menekan dan menarik titik titik urat saraf dalam area wajah dan di sekitar area kepala."
             },
             {
                 "name": "Kerokan",
-                "image": "img",
+                "image": "kerokan.jpeg",
                 "price": 20000,
                 "duration": "20 Menit",
                 "description": "Membuka pori pori kulit agar angin dan panas dalam tubuh keluar dengan sendirinya."
             },
             {
-                "name": "Maker wajah",
-                "image": "img",
+                "name": "Masker wajah",
+                "image": "masker.jpeg",
                 "price": 50000,
                 "duration": "30 Menit",
                 "description": "Melembutkan dan menyegarkan kulit pada wajah."
             },
             {
                 "name": "Matras",
-                "image": "img",
+                "image": "matras.jpg",
                 "price": 9900,
                 "duration": "",
                 "description": ""
@@ -164,67 +164,67 @@
     },
     {
         "name": "Hair Care",
-        "image": "..",
+        "image": "hair_care.jpeg",
         "categories": [
             {
                 "name": "Hair Cut Male 1",
-                "image": ".."
+                "image": "male.jpeg"
             },
             {
                 "name": "Hair Cut Female 2",
-                "image": ".."
+                "image": "female.jpeg"
             },
             {
                 "name": "Hair Care 2",
-                "image": ".."
+                "image": "hair_care_2.webp"
             }
         ],
         "details": [
             {
                 "name": "Hair cut male",
-                "image": "img",
+                "image": "male.jpeg",
                 "price": 95000,
                 "duration": "1 Jam"
             },
             {
-                "name": "hair cut female",
-                "image": "img",
+                "name": "Hair cut female",
+                "image": "female.jpeg",
                 "price": 100000,
                 "duration": "1.5 Jam"
             },
             {
                 "name": "Hair cut kids",
-                "image": "img",
+                "image": "kids.jpeg",
                 "price": 95000,
                 "duration": "2 Jam"
             },
             {
                 "name": "Creambath",
-                "image": "img",
+                "image": "creambath.jpeg",
                 "price": 100000,
                 "duration": "2 Jam"
             },
             {
                 "name": "Hair Spa",
-                "image": "img",
+                "image": "hairspa.jpeg",
                 "price": 150000,
                 "duration": "2 Jam"
             },
             {
                 "name": "Hair Mask",
-                "image": "img",
+                "image": "hairmask.jpeg",
                 "price": 150000,
                 "duration": "2 Jam"
             },
             {
                 "name": "Hair coloring / pewarnaan",
-                "image": "img",
+                "image": "coloring.jpeg",
                 "price": 100000,
                 "duration": "2 Jam"
             },
             {
                 "name": "Botak halus",
-                "image": "img",
+                "image": "botak.jpeg",
                 "price": 95000,
                 "duration": "2 Jam"
             }
@@ -232,35 +232,35 @@
         "additionals": [
             {
                 "name": "Blow dry biasa",
-                "image": "img",
+                "image": "blowdry.jpeg",
                 "price": 20000,
                 "duration": "",
                 "description": ""
             },
             {
                 "name": "Catok",
-                "image": "img",
+                "image": "catok.jpeg",
                 "price": 25000,
                 "duration": "",
                 "description": ""
             },
             {
                 "name": "Pijat kepala",
-                "image": "img",
+                "image": "pijat_kepala.jpeg",
                 "price": 10000,
                 "duration": "10 Menit",
                 "description": ""
             },
             {
                 "name": "Shaving",
-                "image": "img",
+                "image": "shaving.png",
                 "price": 6000,
                 "duration": "",
                 "description": "Mencukur dan merapikan kumis dan jenggot."
             },
             {
-                "name": "Hair Vitamin.",
-                "image": "img",
+                "name": "Hair Vitamin",
+                "image": "vitamin.jpeg",
                 "price": 15000,
                 "duration": "",
                 "description": "Vitamin untuk mengatasi rambut kering, rusak, bercabang, dan rontok."
