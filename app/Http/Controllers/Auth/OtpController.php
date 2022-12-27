@@ -24,6 +24,8 @@ class OtpController extends Controller
 
         $otp = $otpService->create($request);
 
+        event(new WhatsappEvent($otp));
+
         return redirect(route('otp.index', $otp->phone));
     }
 
