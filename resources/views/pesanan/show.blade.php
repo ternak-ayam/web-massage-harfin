@@ -100,7 +100,7 @@
     @include('layouts.navbar')
     <div class="md:container md:m-auto mt-4 mx-4">
         <div class="lg:ml-1 ml-2">
-            <h1 class="text-2xl font-semibold py-2">Message</h1>
+            <h1 class="text-2xl font-semibold py-2">{{ $service->name }}</h1>
             <h2 class="mb-2 text-base">Pilih Durasi Pengerjaan</h2>
         </div>
         <form action="{{ route('pesanan.store') }}" method="post">
