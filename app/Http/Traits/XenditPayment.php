@@ -50,9 +50,10 @@ trait XenditPayment
     public function createDonation($request)
     {
         $user = auth()->user();
+        $donationId = now()->timestamp . rand(0, 9);
 
         $params = [
-            'external_id' => now()->timestamp . rand(0, 9),
+            'external_id' => $donationId,
             'amount' => (double)$request->amount,
             'description' => 'Donation from ' . $user->name,
             'customer' => [
@@ -77,6 +78,7 @@ trait XenditPayment
         $invoice = Invoice::create($params);
 
         return Donation::create([
+            'id' => $donationId,
             'user_id' => $user->id,
             'amount' => $request->amount,
             'path' => $invoice['invoice_url']

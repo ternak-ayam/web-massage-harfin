@@ -2,6 +2,7 @@
 
 namespace App\Http\Traits;
 
+use App\Models\Donation;
 use App\Models\Order;
 use App\Notifications\SendAdminOrderConfirmation;
 
@@ -33,13 +34,23 @@ trait XenditWebhookHandler
                 $status = Order::CANCEL;
             }
 
-            Order::where('order_id', $_id)->update([
-                'status' => $status,
-            ]);
+            if(Order::where('order_id', $_id)->first()) {
+                Order::where('order_id', $_id)->update([
+                    'status' => $status,
+                ]);
 
-            $order = Order::where('order_id', $_id)->first();
+                $order = Order::where('order_id', $_id)->first();
 
-            $this->send(new SendAdminOrderConfirmation($order));
+                $this->send(new SendAdminOrderConfirmation($order));
+            } else {
+                Donation::find()->update([
+                    'status' => $status
+                ]);
+
+                $donation = Order::find($_id)->first();
+
+                $this->send(new SendAdminOrderConfirmation($donation));
+            }
         }
 
         abort(403);
