@@ -11,7 +11,7 @@
                     @include('components.field.input-text', ['name' => 'name', 'label' => 'components.field.label', 'title' => 'Nama', 'value' => $user->name, 'disabled' => true])
                 </div>
                 <div class="mx-2 mb-6 justify-center">
-                    @include('components.field.input-text', ['name' => 'phone', 'label' => 'components.field.label', 'title' => 'No. Hp', 'value' => $user->phone, 'disabled' => true])
+                    @include('components.field.input-text', ['name' => 'phone', 'label' => 'components.field.label', 'title' => 'No. Hp', 'value' => $user->getPhoneNumber(), 'disabled' => true])
                 </div>
                 <div class="mx-2 mb-6 justify-center">
                     @include('components.field.input-text', ['name' => 'email', 'label' => 'components.field.label', 'title' => 'Email', 'value' => $user->email, 'disabled' => true])

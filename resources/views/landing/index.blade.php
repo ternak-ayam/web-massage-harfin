@@ -80,18 +80,62 @@
     <div class="mx-4 mt-4 grid md:grid-cols-4 grid-cols-2 gap-2 justify-center">
 
         <div class="rounded-lg shadow-lg bg-white max-w-sm">
-            <a href="#!" data-mdb-ripple="true" data-mdb-ripple-color="light">
-                <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/182.jpg" alt=""/>
+            <a href="" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img class="rounded-t-lg" src="{{ asset('storage/assets/male.jpeg') }}" alt=""/>
             </a>
             <div class="p-6">
-                <h5 class="text-gray-900 text-xl font-medium mb-2">Card title</h5>
+                <h5 class="text-gray-900 text-xl font-medium mb-2">New Haircut Male</h5>
                 <p class="text-gray-700 text-base mb-4">
-                    Some quick example text to build on the card title and make up the bulk of the card's
-                    content.
+
                 </p>
-                @include('components.button.primary-button', ['title' => 'Lihat Detail', 'class' => 'w-full'])
+                <div class="text-center">
+                    @include('components.button.primary-a', ['title' => 'Lihat Detail', 'class' => 'w-full', 'href' => 'https://bit.ly/3hRw2Al'])
+                </div>
             </div>
         </div>
+        <div class="rounded-lg shadow-lg bg-white max-w-sm">
+            <a href="" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img class="rounded-t-lg" src="{{ asset('storage/assets/female.jpeg') }}" alt=""/>
+            </a>
+            <div class="p-6">
+                <h5 class="text-gray-900 text-xl font-medium mb-2">New Haircut Female</h5>
+                <p class="text-gray-700 text-base mb-4">
+
+                </p>
+                <div class="text-center">
+                    @include('components.button.primary-a', ['title' => 'Lihat Detail', 'class' => 'w-full', 'href' => 'https://bit.ly/3hRw2Al'])
+                </div>
+            </div>
+        </div>
+        <div class="rounded-lg shadow-lg bg-white max-w-sm">
+            <a href="" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img class="rounded-t-lg" src="{{ asset('storage/assets/kids.jpeg') }}" alt=""/>
+            </a>
+            <div class="p-6">
+                <h5 class="text-gray-900 text-xl font-medium mb-2">New Haircut Kids</h5>
+                <p class="text-gray-700 text-base mb-4">
+
+                </p>
+                <div class="text-center">
+                    @include('components.button.primary-a', ['title' => 'Lihat Detail', 'class' => 'w-full', 'href' => 'https://bit.ly/3hRw2Al'])
+                </div>
+            </div>
+        </div>
+        <div class="rounded-lg shadow-lg bg-white max-w-sm">
+            <a href="https://bit.ly/3hRw2Al" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                <img class="rounded-t-lg" src="{{ asset('storage/assets/hairspa.jpeg') }}" alt=""/>
+            </a>
+            <div class="p-6">
+                <h5 class="text-gray-900 text-xl font-medium mb-2">What is Hair Spa?</h5>
+                <p class="text-gray-700 text-base mb-4">
+
+                </p>
+                <div class="text-center">
+                    @include('components.button.primary-a', ['title' => 'Lihat Detail', 'class' => 'w-full', 'href' => 'https://bit.ly/3hRw2Al'])
+                </div>
+            </div>
+        </div>
+
 
     </div>
 
@@ -101,7 +145,7 @@
                 <h1 class="text-3xl text-gray-800 lg:text-4xl"><span class="font-bold">Ayo bergabung</span> <br> <span
                         class="font-light">menjadi mitra kami</span>
                 </h1>
-                    @include('components.button.primary-button', ['title' => 'Daftar mitra', 'type' => 'button', 'id' => 'daftar_mitra', 'class' => 'mt-4'])
+                @include('components.button.primary-button', ['title' => 'Daftar mitra', 'type' => 'button', 'id' => 'daftar_mitra', 'class' => 'mt-4'])
             </div>
         </form>
     </div>
