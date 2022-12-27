@@ -119,10 +119,12 @@
                             </div>
                             <div
                                 id="service-bg{{ $key }}"
-                                class="sm:mb-2 md:mb-0 relative md:w-1/4 w-full border-r border-b border-l border-black lg:border-l-0 lg:border-t lg:border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                                class="mb-2 md:mb-0 relative md:w-1/4 w-full border-r border-b border-l border-black lg:border-l-0 lg:border-t lg:border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                                 <div class="mb-8">
                                     <div class="font-bold text-xl mb-2">{{ $detail->title }}</div>
-                                    <p class="text-base">Durasi: {{ $detail->duration }}</p>
+                                    @if($detail->service['slug'] !== 'hair-care')
+                                        <p class="text-base">Durasi: {{ $detail->duration }}</p>
+                                    @endif
                                     <div class="text-base flex absolute justify-end bottom-2 right-2"><span
                                             class="p-2 bg-[#0BA2D4] text-white border-black border rounded-lg">{{ $detail->getPrice() }}</span>
                                     </div>
@@ -149,14 +151,17 @@
                         </div>
                         <div
                             id="additional_services_bg{{ $key }}"
-                            class="sm:mb-2 md:mb-0 w-full border-r border-b border-l lg:border-l-0 lg:border-t border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                            class="mb-2 md:mb-0 w-full border-r border-b border-l lg:border-l-0 lg:border-t border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                             <div class="mb-12">
                                 <div class="text-gray-900 font-bold text-xl">{{ $additional->name }}</div>
-                                @if($additional->name === "Matras")
-                                <p class="text-base mb-2"></p>
-                                @else
-                                <p class="text-base mb-2">Durasi: {{ $detail->duration }}</p>
+                                @if($additional->service['slug'] !== 'hair-care')
+                                    @if($additional->name === "Matras")
+                                        <p class="text-base mb-2"></p>
+                                    @else
+                                        <p class="text-base mb-2">Durasi: {{ $additional->duration }}</p>
+                                    @endif
                                 @endif
+
                                 <p class="text-gray-700 text-sm">
                                     {{ $additional->description }}
                                 </p>
@@ -196,11 +201,19 @@
                         @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Pria', 'name' => 'customer_sex', 'id' => 'pria', 'value' => 1])
                         @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Wanita', 'name' => 'customer_sex', 'id' => 'wanita', 'value' => 0])
                     </div>
-                    <div class="my-2">
-                        <label for="" class="font-semibold">Jenis Kelamin Terapis</label>
-                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Pria', 'name' => 'therapist_sex', 'id' => 'pria_terapis', 'value' => 1])
-                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Wanita', 'name' => 'therapist_sex', 'id' => 'wanita_terapis', 'value' => 0])
-                    </div>
+                    @if($detail->service['slug'] === 'hair-care')
+                        <div class="my-2">
+                            <label for="" class="font-semibold">Pilihan Stylish</label>
+                            @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Pria', 'name' => 'style_type_sex', 'id' => 'pria_terapis', 'value' => 1])
+                            @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Wanita', 'name' => 'style_type_sex', 'id' => 'wanita_terapis', 'value' => 0])
+                        </div>
+                    @else
+                        <div class="my-2">
+                            <label for="" class="font-semibold">Jenis Kelamin Terapis</label>
+                            @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Pria', 'name' => 'therapist_sex', 'id' => 'pria_terapis', 'value' => 1])
+                            @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Wanita', 'name' => 'therapist_sex', 'id' => 'wanita_terapis', 'value' => 0])
+                        </div>
+                    @endif
                     <div class="flex w-full flex-wrap gap-2 mt-2 mb-4">
                         <div class="my-2">
                             @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Jam', 'name' => 'time', 'type' => 'time', 'min' => now()->timezone('Asia/Jakarta')->addHours(2)->format('H:i')])
@@ -231,8 +244,9 @@
                     </div>
                     <div class="my-2">
                         <label class="block mb-2 text-sm text-black">Voucher</label>
-                        <select name="voucher" class="bg-gray-50 border focus:outline-none focus:border-[#0BA2D4] border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 disabled:bg-gray-100">
-                                <option value="">Pilih Voucher</option>
+                        <select name="voucher"
+                                class="bg-gray-50 border focus:outline-none focus:border-[#0BA2D4] border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 disabled:bg-gray-100">
+                            <option value="">Pilih Voucher</option>
                             @foreach($vouchers as $voucher)
                                 <option value="{{ $voucher->code }}">{{ $voucher->name }}</option>
                             @endforeach
