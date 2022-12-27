@@ -119,7 +119,7 @@
                             </div>
                             <div
                                 id="service-bg{{ $key }}"
-                                class="mb-2 relative md:w-1/4 w-full border-r border-b border-l border-black lg:border-l-0 lg:border-t lg:border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                                class="sm:mb-2 md:mb-0 relative md:w-1/4 w-full border-r border-b border-l border-black lg:border-l-0 lg:border-t lg:border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                                 <div class="mb-8">
                                     <div class="font-bold text-xl mb-2">{{ $detail->title }}</div>
                                     <p class="text-base">Durasi: {{ $detail->duration }}</p>
@@ -149,7 +149,7 @@
                         </div>
                         <div
                             id="additional_services_bg{{ $key }}"
-                            class="mb-2 w-full border-r border-b border-l lg:border-l-0 lg:border-t border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                            class="sm:mb-2 md:mb-0 w-full border-r border-b border-l lg:border-l-0 lg:border-t border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                             <div class="mb-12">
                                 <div class="text-gray-900 font-bold text-xl">{{ $additional->name }}</div>
                                 @if($additional->name === "Matras")
