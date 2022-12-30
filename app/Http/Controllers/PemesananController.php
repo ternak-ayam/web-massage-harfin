@@ -27,7 +27,8 @@ class PemesananController extends Controller
     public function show(Order $order)
     {
         return view('pemesanan.show', [
-            'order' => $order
+            'order' => $order,
+            'notifications' => auth()->user()->unreadNotifications()->paginate(5)
         ]);
     }
 }

@@ -44,6 +44,7 @@ class SeviceSeeder extends Seeder
                     'image' => $detail['image'],
                     'title' => $detail['name'],
                     'duration' => $detail['duration'] ?? "",
+                    'description' => $detail['description'] ?? "",
                     'price' => $detail['price']
                 ]);
             }

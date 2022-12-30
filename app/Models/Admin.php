@@ -14,6 +14,10 @@ class Admin extends Authenticatable
     use HasFactory, Notifiable, WhatsAppSettingTrait;
 
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'country_code',
+        'name',
+        'email',
+        'password',
+        'phone',
+        'country_code',
     ];
 }

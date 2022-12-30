@@ -93,7 +93,21 @@
             totalElement.innerHTML = formatRupiah(subtotal);
         }
 
+        const orderTime = document.getElementById("time");
+        const orderDate = document.getElementById("date");
+        const formSubmit = document.getElementById("form-submit");
 
+        const validateMyForm = () => {
+            let chosenTime = (new Date(orderDate.value + " " + orderTime.value)).getTime();
+            let now = new Date().getTime();
+
+            if(chosenTime < (now + 7200000)) {
+                alert("Waktu harus lebih lewat 2 jam dari waktu sekarang");
+                return false;
+            }
+
+            formSubmit.submit();
+        }
     </script>
 @endpush
 @section('content')
@@ -105,7 +119,7 @@
                 <h2 class="mb-2 text-base">Pilih Durasi Pengerjaan</h2>
             @endif
         </div>
-        <form action="{{ route('pesanan.store') }}" method="post">
+        <form action="{{ route('pesanan.store') }}" id="form-submit" method="post" onsubmit="event.preventDefault(); return validateMyForm();">
             @csrf
             <input type="hidden" name="service" value="{{ $service->slug }}">
             <div class="w-full">
@@ -124,6 +138,9 @@
                                 class="mb-2 md:mb-0 relative md:w-1/4 w-full border-r border-b border-l border-black md:border-l-0 md:border-t md:border-black bg-white rounded-b md:rounded-b-none md:rounded-r p-4 flex flex-col justify-between leading-normal">
                                 <div class="mb-8">
                                     <div class="font-bold text-xl mb-2">{{ $detail->title }}</div>
+                                    <p class="text-gray-700 text-sm">
+                                        {{ $detail->description }}
+                                    </p>
                                     @if($detail->service['slug'] !== 'hair-care')
                                         <p class="text-base">Durasi: {{ $detail->duration }}</p>
                                     @endif
@@ -220,10 +237,10 @@
                         <label for="" class="font-semibold text-lg">Kapan Anda butuh layanan jasa?</label>
                         <div class="flex w-full flex-wrap gap-2 mb-4">
                             <div class="my-2">
-                                @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Jam', 'name' => 'time', 'type' => 'time', 'min' => now()->timezone('Asia/Jakarta')->addHours(2)->format('H:i')])
+                                @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Jam', 'name' => 'time', 'type' => 'time', 'id' => 'time'])
                             </div>
                             <div class="my-2">
-                                @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Tanggal', 'name' => 'date', 'type' => 'date', 'min' => now()->timezone('Asia/Jakarta')->format('Y-m-d')])
+                                @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Tanggal', 'name' => 'date', 'type' => 'date', 'id' => 'date', 'min' => now()->timezone('Asia/Jakarta')->format('Y-m-d')])
                             </div>
                         </div>
                     </div>

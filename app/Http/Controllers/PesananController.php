@@ -13,6 +13,7 @@ use App\Models\Service;
 use App\Models\ServiceDetail;
 use App\Models\Traits\CreateInvoicePdf;
 use App\Models\Voucher;
+use App\Notifications\SendAdminOrderCancelConfirmation;
 use App\Notifications\SendOrderCancelConfirmation;
 use App\Notifications\SendOrderConfirmationNotification;
 use App\Notifications\SendOrderDoneConfirmation;
@@ -51,7 +52,7 @@ class PesananController extends Controller
         ]);
 
         $order->buyer->notify(new SendOrderCancelConfirmation($order));
-        $this->send(new SendOrderCancelConfirmation($order));
+        $this->send(new SendAdminOrderCancelConfirmation($order));
 
         return back();
     }
