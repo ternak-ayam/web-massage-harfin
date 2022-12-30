@@ -43,7 +43,7 @@ class SeviceSeeder extends Seeder
                     'service_id' => $srv->id,
                     'image' => $detail['image'],
                     'title' => $detail['name'],
-                    'duration' => $detail['duration'],
+                    'duration' => $detail['duration'] ?? "",
                     'price' => $detail['price']
                 ]);
             }
