@@ -98,11 +98,11 @@
 @endpush
 @section('content')
     @include('layouts.navbar')
-    <div class="md:container md:m-auto mt-4 mx-4">
-        <div class="lg:ml-1 ml-2">
+    <div class="mt-4 mx-4">
+        <div class="md:ml-1 ml-2">
             <h1 class="text-2xl font-semibold py-2">{{ $service->name }}</h1>
             @if($service->slug !== 'hair-care')
-            <h2 class="mb-2 text-base">Pilih Durasi Pengerjaan</h2>
+                <h2 class="mb-2 text-base">Pilih Durasi Pengerjaan</h2>
             @endif
         </div>
         <form action="{{ route('pesanan.store') }}" method="post">
@@ -111,17 +111,17 @@
             <div class="w-full">
                 <div class="mt-2">
                     @foreach($service->details as $key => $detail)
-                        <label for="service_detail{{ $key }}" class="w-full lg:max-w-full lg:flex cursor-pointer my-2">
+                        <label for="service_detail{{ $key }}" class="w-full md:max-w-full md:flex cursor-pointer my-2">
                             <input id="service_detail{{ $key }}" type="checkbox" class="hidden service-bg"
                                    data-price="{{ $detail->price }}" name="service_details[]" value="{{ $detail->id }}">
                             <div
-                                class="h-48 lg:h-auto lg:w-48 border-black border border-r-0 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                                class="h-48 md:h-auto md:w-48 border-black border border-r-0 flex-none bg-cover rounded-t md:rounded-t-none md:rounded-l text-center overflow-hidden"
                                 style="background-image: url({{ $detail->getImageUrl() }})"
                                 title="{{ $detail->title }}">
                             </div>
                             <div
                                 id="service-bg{{ $key }}"
-                                class="mb-2 md:mb-0 relative md:w-1/4 w-full border-r border-b border-l border-black lg:border-l-0 lg:border-t lg:border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                                class="mb-2 md:mb-0 relative md:w-1/4 w-full border-r border-b border-l border-black md:border-l-0 md:border-t md:border-black bg-white rounded-b md:rounded-b-none md:rounded-r p-4 flex flex-col justify-between leading-normal">
                                 <div class="mb-8">
                                     <div class="font-bold text-xl mb-2">{{ $detail->title }}</div>
                                     @if($detail->service['slug'] !== 'hair-care')
@@ -136,24 +136,24 @@
                     @endforeach
                 </div>
             </div>
-            <div class="mt-8 lg:ml-1 ml-2">
+            <div class="mt-8 md:ml-1 ml-2">
                 <h2 class="mb-2 text-base">Tambahan Layanan Jasa (opsional)</h2>
             </div>
             <div class="mt-2">
                 @foreach($service->additionals as $key => $additional)
                     <label for="additional_services{{ $key }}"
-                           class="lg:w-[50rem] sm:w-full lg:max-w-full lg:flex relative my-2">
+                           class="md:w-[50rem] sm:w-full md:max-w-full md:flex relative my-2">
                         <input type="checkbox" id="additional_services{{ $key }}" class="hidden additional_services"
                                name="additional_services[]" data-price="{{ $additional->price }}"
                                value="{{ $additional->id }}">
                         <div
-                            class="h-48 lg:h-auto lg:w-48 border-black border border-r-0 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
+                            class="h-48 md:h-auto md:w-48 border-black border border-r-0 flex-none bg-cover rounded-t md:rounded-t-none md:rounded-l text-center overflow-hidden"
                             style="background-image: url({{ $additional->getImageUrl() }})"
                             title="Mountain">
                         </div>
                         <div
                             id="additional_services_bg{{ $key }}"
-                            class="mb-2 md:mb-0 w-full border-r border-b border-l lg:border-l-0 lg:border-t border-black bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                            class="mb-2 md:mb-0 w-full border-r border-b border-l md:border-l-0 md:border-t border-black bg-white rounded-b md:rounded-b-none md:rounded-r p-4 flex flex-col justify-between leading-normal">
                             <div class="mb-12">
                                 <div class="text-gray-900 font-bold text-xl">{{ $additional->name }}</div>
                                 @if($additional->service['slug'] !== 'hair-care')
@@ -199,29 +199,32 @@
 
                 <div class="md:w-1/2">
                     <div class="my-2">
-                        <label for="" class="font-semibold">Jenis Kelamin</label>
+                        <label for="" class="font-semibold text-lg">Jenis Kelamin Anda?</label>
                         @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Pria', 'name' => 'customer_sex', 'id' => 'pria', 'value' => 1])
                         @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Wanita', 'name' => 'customer_sex', 'id' => 'wanita', 'value' => 0])
                     </div>
                     @if($detail->service['slug'] === 'hair-care')
                         <div class="my-2">
-                            <label for="" class="font-semibold">Pilihan Stylish</label>
+                            <label for="" class="font-semibold text-lg">Pilihan Stylish?</label>
                             @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Pria', 'name' => 'style_type_sex', 'id' => 'pria_terapis', 'value' => 1])
                             @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Wanita', 'name' => 'style_type_sex', 'id' => 'wanita_terapis', 'value' => 0])
                         </div>
                     @else
                         <div class="my-2">
-                            <label for="" class="font-semibold">Jenis Kelamin Terapis</label>
+                            <label for="" class="font-semibold text-lg">Pilih Jenis Kelamin Terapis?</label>
                             @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Pria', 'name' => 'therapist_sex', 'id' => 'pria_terapis', 'value' => 1])
                             @include('components.field.radio', ['label' => 'components.field.label-inline', 'title' => 'Wanita', 'name' => 'therapist_sex', 'id' => 'wanita_terapis', 'value' => 0])
                         </div>
                     @endif
-                    <div class="flex w-full flex-wrap gap-2 mt-2 mb-4">
-                        <div class="my-2">
-                            @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Jam', 'name' => 'time', 'type' => 'time', 'min' => now()->timezone('Asia/Jakarta')->addHours(2)->format('H:i')])
-                        </div>
-                        <div class="my-2">
-                            @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Tanggal', 'name' => 'date', 'type' => 'date', 'min' => now()->timezone('Asia/Jakarta')->format('Y-m-d')])
+                    <div>
+                        <label for="" class="font-semibold text-lg">Kapan Anda butuh layanan jasa?</label>
+                        <div class="flex w-full flex-wrap gap-2 mb-4">
+                            <div class="my-2">
+                                @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Jam', 'name' => 'time', 'type' => 'time', 'min' => now()->timezone('Asia/Jakarta')->addHours(2)->format('H:i')])
+                            </div>
+                            <div class="my-2">
+                                @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Tanggal', 'name' => 'date', 'type' => 'date', 'min' => now()->timezone('Asia/Jakarta')->format('Y-m-d')])
+                            </div>
                         </div>
                     </div>
                     <div class="my-2">
@@ -240,7 +243,7 @@
                         @include('components.field.text-area', ['label' => 'components.field.label', 'title' => 'Catatan Tambahan', 'name' => 'notes'])
                     </div>
                     <div class="my-2">
-                        <label for="" class="font-semibold">Metode Pembayaran</label>
+                        <label for="" class="font-semibold text-lg">Metode Pembayaran</label>
                         @include('components.field.radio', ['label' => 'components.field.label-inline', 'name' => 'channel', 'title' => 'COD/Cash (Diwajibkan deposit sebesar Rp20.000 untuk jaminan)', 'id' => 'payment_method_cod', 'value' => 'cod'])
                         @include('components.field.radio', ['label' => 'components.field.label-inline', 'name' => 'channel', 'title' => 'OVO/DANA', 'id' => 'payment_method_xendit', 'value' => 'xendit'])
                     </div>

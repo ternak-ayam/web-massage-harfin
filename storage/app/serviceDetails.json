@@ -4,12 +4,8 @@
         "image": "massage_1.jpeg",
         "categories": [
             {
-                "name": "Massage 1",
+                "name": "Massage",
                 "image": "massage_1.jpeg"
-            },
-            {
-                "name": "Massage 2",
-                "image": "massage_2.webp"
             }
         ],
         "details": [
@@ -89,12 +85,8 @@
         "image": "reflexology_1.jpeg",
         "categories": [
             {
-                "name": "Reflexology 1",
+                "name": "Reflexology",
                 "image": "reflexology_1.jpeg"
-            },
-            {
-                "name": "Reflexology 2",
-                "image": "reflexology_2.jpeg"
             }
         ],
         "details": [
@@ -167,15 +159,11 @@
         "image": "hair_care.jpeg",
         "categories": [
             {
-                "name": "Hair Cut Male 1",
+                "name": "Hair Cut",
                 "image": "male.jpeg"
             },
             {
-                "name": "Hair Cut Female 2",
-                "image": "female.jpeg"
-            },
-            {
-                "name": "Hair Care 2",
+                "name": "Hair Care",
                 "image": "hair_care_2.webp"
             }
         ],
@@ -184,49 +172,49 @@
                 "name": "Hair cut male",
                 "image": "male.jpeg",
                 "price": 95000,
-                "duration": "1 Jam"
+                "description": "Pangkas rambut pria"
             },
             {
                 "name": "Hair cut female",
                 "image": "female.jpeg",
                 "price": 100000,
-                "duration": "1.5 Jam"
+                "description": "Pangkas rambut wanita"
             },
             {
                 "name": "Hair cut kids",
                 "image": "kids.jpeg",
                 "price": 95000,
-                "duration": "2 Jam"
+                "description": "Pangkas rambut anak"
             },
             {
                 "name": "Creambath",
                 "image": "creambath.jpeg",
                 "price": 100000,
-                "duration": "2 Jam"
+                "description": "Perawatan rambut dengan cream loreal"
             },
             {
                 "name": "Hair Spa",
                 "image": "hairspa.jpeg",
                 "price": 150000,
-                "duration": "2 Jam"
+                "description": "Perawatan rambut dengan cream loreal dan beberapa vitamin beserta serum"
             },
             {
                 "name": "Hair Mask",
                 "image": "hairmask.jpeg",
                 "price": 150000,
-                "duration": "2 Jam"
+                "description": "Perawatan rambut rontok"
             },
             {
                 "name": "Hair coloring / pewarnaan",
                 "image": "coloring.jpeg",
                 "price": 100000,
-                "duration": "2 Jam"
+                "description": "Pewarnaan rambut by loreal"
             },
             {
                 "name": "Botak halus",
                 "image": "botak.jpeg",
                 "price": 95000,
-                "duration": "2 Jam"
+                "description": "Cukur rambut botak halus menggunakan 2 silet."
             }
         ],
         "additionals": [
@@ -249,7 +237,7 @@
                 "image": "pijat_kepala.jpeg",
                 "price": 10000,
                 "duration": "10 Menit",
-                "description": ""
+                "description": "10 Menit"
             },
             {
                 "name": "Shaving",

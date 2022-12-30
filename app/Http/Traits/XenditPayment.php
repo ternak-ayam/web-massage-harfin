@@ -36,7 +36,7 @@ trait XenditPayment
                 'email' => $user->email,
                 'mobile_number' => $user->getPhoneNumber(),
             ],
-            'payment_methods' => ['OVO', 'DANA', 'QRIS'],
+            'payment_methods' => ['OVO', 'DANA'],
             'locale' => 'id',
             'success_redirect_url' => route('pesanan.success', $order->order_id),
             'failure_redirect_url' => route('pesanan.success', $order->order_id),

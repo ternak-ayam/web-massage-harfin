@@ -119,7 +119,6 @@
                     @if($order->canCancel() || !$order->isCancel())
                         @include('components.button.danger-a', ['title' => 'Batalkan Pesanan', 'href' => route('pesanan.cancel', $order->order_id)])
                     @endif
-                    @include('components.button.primary-a', ['title' => 'Lihat Daftar Transaksi', 'href' => route('pemesanan.index')])
                     @if($order->isPending())
                         @include('components.button.success-a', ['title' => $order->channel === \App\Models\Order::XENDIT ? 'Bayar' : 'Bayar uang jaminan', 'href' => $order->payment_path, 'target' =>'_blank'])
                     @endif

@@ -5,12 +5,17 @@
     @include('layouts.banner')
 
     <div class="w-full m-auto italic px-4 py-1">
-        <marquee behavior="" direction="">Selamat Datang @auth
+        <marquee behavior="" direction="">Selamat datang @auth
                 {{ auth()->user()->name }}
-            @endauth di JLIFE Pro.com. Selamat Menikmati Layanan Jasa di JLIFE Pro.com.
+            @endauth di JLIFE Pro, selamat menikmati layanan jasa di JLIFE Pro
         </marquee>
     </div>
-    <div class="container flex justify-center m-auto mt-8 mb-8 gap-2 flex-wrap">
+    <div class="border-dashed border-b border-sky-500 p-2 mt-12 pb-4">
+        <div class="container m-auto">
+            <h1 class="text-3xl font-semibold">Pilihan</h1>
+        </div>
+    </div>
+    <div class="container flex justify-center m-auto mt-8 mb-8 gap-8 flex-wrap">
         <a href="{{ route('pesanan.show', 'hair-care') }}">
             <div class="bg-[#0BA2D4] p-2 rounded-full flex justify-center flex-col">
                 <img src="{{ asset('assets/icon/hair-cutting.png')}}" class="scale-50" alt="">
@@ -44,12 +49,12 @@
             </div>
         </a>
     </div>
+
     <div class="border-dashed border-b border-sky-500 p-2 mt-12 pb-4">
         <div class="container m-auto">
             <h1 class="text-3xl font-semibold">Top Jasa</h1>
         </div>
     </div>
-
 
     <div class="container mt-4 flex justify-center m-auto">
         <div class="marquee">
@@ -84,7 +89,7 @@
                 <img class="rounded-t-lg" src="{{ asset('storage/assets/male.jpeg') }}" alt=""/>
             </a>
             <div class="p-6">
-                <h5 class="text-gray-900 text-xl font-medium mb-2">New Haircut Male</h5>
+                <h5 class="text-gray-900 text-base font-medium mb-2">New Haircut Male</h5>
                 <p class="text-gray-700 text-base mb-4">
 
                 </p>
@@ -98,7 +103,7 @@
                 <img class="rounded-t-lg" src="{{ asset('storage/assets/female.jpeg') }}" alt=""/>
             </a>
             <div class="p-6">
-                <h5 class="text-gray-900 text-xl font-medium mb-2">New Haircut Female</h5>
+                <h5 class="text-gray-900 text-base font-medium mb-2">New Haircut Female</h5>
                 <p class="text-gray-700 text-base mb-4">
 
                 </p>
@@ -112,7 +117,7 @@
                 <img class="rounded-t-lg" src="{{ asset('storage/assets/kids.jpeg') }}" alt=""/>
             </a>
             <div class="p-6">
-                <h5 class="text-gray-900 text-xl font-medium mb-2">New Haircut Kids</h5>
+                <h5 class="text-gray-900 text-base font-medium mb-2">New Haircut Kids</h5>
                 <p class="text-gray-700 text-base mb-4">
 
                 </p>
@@ -126,7 +131,7 @@
                 <img class="rounded-t-lg" src="{{ asset('storage/assets/hairspa.jpeg') }}" alt=""/>
             </a>
             <div class="p-6">
-                <h5 class="text-gray-900 text-xl font-medium mb-2">What is Hair Spa?</h5>
+                <h5 class="text-gray-900 text-base font-medium mb-2">What is Hair Spa?</h5>
                 <p class="text-gray-700 text-base mb-4">
 
                 </p>
