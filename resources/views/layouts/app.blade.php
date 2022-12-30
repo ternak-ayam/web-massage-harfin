@@ -33,6 +33,15 @@
 </script>
 @stack('script')
 <script src="{{ asset('js/script.js') }}"></script>
+<script>
+    const openDropdown = document.getElementById("openDropdown");
+    const dropdownContent = document.getElementById("dropdownContent");
+
+    openDropdown.addEventListener("click", () => {
+        dropdownContent.classList.toggle("hidden");
+    })
+
+</script>
 <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
 </body>
 </html>

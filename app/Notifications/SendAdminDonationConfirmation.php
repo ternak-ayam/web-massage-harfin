@@ -45,7 +45,7 @@ class SendAdminDonationConfirmation extends Notification
     public function toWhatsApp($notifiable)
     {
         return (new WhatsAppMessage)
-            ->content("Donasi masuk sebesar {$this->donation->getFormattedAmount()}, Terima kasih.");
+            ->content("Donasi sebesar {$this->donation->getFormattedAmount()} telah masuk ke akun, Silakan cek dashboard untuk melihat detail.");
     }
 
     /**

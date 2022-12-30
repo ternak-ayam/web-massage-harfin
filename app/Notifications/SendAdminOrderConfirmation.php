@@ -45,7 +45,7 @@ class SendAdminOrderConfirmation extends Notification
     public function toWhatsApp($notifiable)
     {
         return (new WhatsAppMessage)
-            ->content("Pesanan masuk dengan Order ID {$this->order->order_id}. Silakan cek struk berikut.")
+            ->content("Halo Admin! Order dengan id {$this->order->order_id} telah dibayar, silahkan cek invoice berikut untuk melihat detail order.")
             ->media($this->order->invoice);
     }
 

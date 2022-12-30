@@ -4,12 +4,13 @@ namespace App\Notifications;
 
 use App\Channels\Messages\WhatsAppMessage;
 use App\Channels\WhatsAppChannel;
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SendOrderCancelConfirmation extends Notification
+class SendPaymentSuccessOrderConfirmation extends Notification
 {
     use Queueable;
 
@@ -45,7 +46,7 @@ class SendOrderCancelConfirmation extends Notification
     public function toWhatsApp($notifiable)
     {
         return (new WhatsAppMessage)
-            ->content("Order Anda " . $this->order->service['name'] . " dengan Order ID " . $this->order->order_id . " telah dibatalkan. Pengembalian dana akan segera diproses oleh Admin.");
+            ->content("Order Anda " . $this->order->service['name'] . "dengan Order ID " . $this->order->order_id . " telah dibayar, silahkan cek di website untuk detail lebih lanjut.");
     }
 
     /**
@@ -57,8 +58,8 @@ class SendOrderCancelConfirmation extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => 'Pesanan Dibatalkan',
-            'body' => 'Pesanan ' . $this->order->order_id . ' telah dibatalkan, pengembalian dana akan diproses',
+            'title' => 'Pesanan Telah Dibayar',
+            'body' => 'Pesanan ' . $this->order->order_id . ' telah berhasil dibayar',
         ];
     }
 }

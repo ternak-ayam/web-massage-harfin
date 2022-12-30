@@ -33,7 +33,7 @@ class SendOrderDoneConfirmation extends Notification
      */
     public function via($notifiable)
     {
-        return [WhatsAppChannel::class];
+        return [WhatsAppChannel::class, 'database'];
     }
 
     /**
@@ -45,7 +45,7 @@ class SendOrderDoneConfirmation extends Notification
     public function toWhatsApp($notifiable)
     {
         return (new WhatsAppMessage)
-            ->content("Pesanan dengan Order ID {$this->order->order_id} telah selesai.");
+            ->content("Order Anda " . $this->order->service['name'] . "dengan Order ID " . $this->order->order_id . " telah selesai, silahkan cek di website untuk detail lebih lanjut.");
     }
 
 
@@ -58,7 +58,8 @@ class SendOrderDoneConfirmation extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'title' => 'Pesanan Selesai',
+            'body' => 'Pesanan ' . $this->order->order_id . ' telah selesai',
         ];
     }
 }

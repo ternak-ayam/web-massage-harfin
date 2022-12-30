@@ -6,10 +6,32 @@
                      class="w-28 lg:w-32"/>
             </a>
             @auth
-                <a href="#" class="justify-center text-center">
-                    <i class="fa-solid fa-envelope text-white"></i>
-                    <span class="tab block text-xs text-white">Kotak Masuk</span>
-                </a>
+                <div class="relative">
+                    <button id="openDropdown" class="justify-center text-center">
+                        <i class="fa-solid fa-envelope text-white"></i>
+                        <span class="tab block text-xs text-white">Kotak Masuk</span>
+                    </button>
+
+                    <div id="dropdownContent"
+                         class="absolute hidden right-0 mt-2 bg-white rounded-md shadow-lg overflow-hidden z-20"
+                         style="width:20rem;">
+                        <div class="py-2">
+                            @forelse($notifications as $notification)
+                            <a class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2">
+                                <p class="text-gray-600 text-sm mx-2">
+                                    <span class="font-bold">{{ $notification->data['body'] }}</span> . <small> {{ $notification->created_at->diffForHumans() }} </small>
+                                </p>
+                            </a>
+                            @empty
+                                <div class="text-center">
+                                    <span class="text-sm">Data masih kosong.</span>
+                                </div>
+                            @endforelse
+                            {{ $notifications->links() }}
+                        </div>
+                        <div class="block bg-[#0BA2D4] text-white text-center py-2 text-base">Kotak Masuk</div>
+                    </div>
+                </div>
             @else
                 <a href="{{ route('login') }}" class="justify-center text-center">
                     <i class="fa-solid fa-right-to-bracket text-white"></i>

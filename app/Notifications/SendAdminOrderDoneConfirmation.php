@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class SendOrderCancelConfirmation extends Notification
+class SendAdminOrderDoneConfirmation extends Notification
 {
     use Queueable;
 
@@ -33,7 +33,7 @@ class SendOrderCancelConfirmation extends Notification
      */
     public function via($notifiable)
     {
-        return [WhatsAppChannel::class, 'database'];
+        return [WhatsAppChannel::class];
     }
 
     /**
@@ -45,7 +45,7 @@ class SendOrderCancelConfirmation extends Notification
     public function toWhatsApp($notifiable)
     {
         return (new WhatsAppMessage)
-            ->content("Order Anda " . $this->order->service['name'] . " dengan Order ID " . $this->order->order_id . " telah dibatalkan. Pengembalian dana akan segera diproses oleh Admin.");
+            ->content("Customer " . $this->order->buyer['name'] . " telah menyelesaikan pesanan, silahkan cek halaman admin untuk detail lebih lanjut.");
     }
 
     /**
@@ -57,8 +57,7 @@ class SendOrderCancelConfirmation extends Notification
     public function toArray($notifiable)
     {
         return [
-            'title' => 'Pesanan Dibatalkan',
-            'body' => 'Pesanan ' . $this->order->order_id . ' telah dibatalkan, pengembalian dana akan diproses',
+            //
         ];
     }
 }

@@ -19,7 +19,8 @@ class PemesananController extends Controller
 
         return view('pemesanan.index', [
             'orders' => $orders,
-            'type'  => $type
+            'type'  => $type,
+            'notifications' => auth()->user()->unreadNotifications()->paginate(5)
         ]);
     }
 

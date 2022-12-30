@@ -10,6 +10,7 @@ class LandingPageController extends Controller
     {
         return view('landing.index', [
             'categories' => Category::all(),
+            'notifications' => auth()->check() ? auth()->user()->unreadNotifications()->paginate(5) : []
         ]);
     }
 }
