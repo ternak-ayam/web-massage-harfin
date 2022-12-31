@@ -124,11 +124,11 @@
                     @if($order->isPending())
                         @include('components.button.success-a', ['title' => $order->channel === \App\Models\Order::XENDIT ? 'Bayar' : 'Bayar uang jaminan', 'href' => $order->payment_path, 'target' =>'_blank'])
                     @endif
-                    @if($order->isSettle())
-                        <div class="mt-4">
-                            @include('components.button.primary-a', ['title' => 'Download Struk', 'href' => $order->invoice, 'target' => '_blank'])
-                        </div>
-                    @endif
+{{--                    @if($order->isSettle())--}}
+{{--                        <div class="mt-4">--}}
+{{--                            @include('components.button.primary-a', ['title' => 'Download Struk', 'href' => $order->invoice, 'target' => '_blank'])--}}
+{{--                        </div>--}}
+{{--                    @endif--}}
                 </div>
             </div>
         </div>
