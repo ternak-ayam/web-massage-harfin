@@ -49,7 +49,6 @@ trait XenditWebhookHandler
                     $this->send(new SendInvoiceToAdmin($order));
                     $order->buyer->notify(new SendPaymentSuccessOrderConfirmation($order));
 
-                    return "Success";
                 } else {
                     Donation::where('id', $_id)->update([
                         'status' => $status
@@ -57,8 +56,9 @@ trait XenditWebhookHandler
 
                     $this->send(new SendAdminOrderConfirmation($order));
 
-                    return "Success";
                 }
+
+                return \stdClass::class;
             }
         }
 
