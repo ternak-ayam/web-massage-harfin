@@ -22,7 +22,7 @@ trait XenditWebhookHandler
 
             $arrRequestInput = json_decode($rawRequestInput, true);
 
-            $_id = $arrRequestInput['id'];
+            $_id = $arrRequestInput['external_id'];
             $_status = $arrRequestInput['status'];
 
             if (in_array($_status, ['PAID', 'SETTLED'])) {
