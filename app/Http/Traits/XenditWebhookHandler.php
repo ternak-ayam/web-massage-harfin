@@ -35,8 +35,6 @@ trait XenditWebhookHandler
                 $status = Order::CANCEL;
             }
 
-            return $status;
-
             if($order = Order::where('order_id', $_id)->first()) {
                 Order::where('order_id', $_id)->update([
                     'status' => $status,
