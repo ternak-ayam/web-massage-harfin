@@ -38,30 +38,32 @@ trait XenditWebhookHandler
                 $status = Order::CANCEL;
             }
 
-            if ($status === Order::SETTLE) {
-                if ($order = Order::where('order_id', $_id)->first()) {
-                    Order::where('order_id', $_id)->update([
-                        'status' => $status,
-                        'remain' => $order->total - $_paid_amount,
-                        'paid' => $_paid_amount
-                    ]);
+            if ($order = Order::where('order_id', $_id)->first()) {
+                Order::where('order_id', $_id)->update([
+                    'status' => $status,
+                    'remain' => $order->total - $_paid_amount,
+                    'paid' => $_paid_amount
+                ]);
 
+                if ($status === Order::SETTLE) {
                     $this->send(new SendAdminOrderConfirmation($order));
                     $this->send(new SendInvoiceToAdmin($order));
                     $order->buyer->notify(new SendPaymentSuccessOrderConfirmation($order));
-
-                } else {
-                    Donation::where('id', $_id)->update([
-                        'status' => $status
-                    ]);
-
-                    $donation = Donation::where('id', $_id)->first();
-
-                    $this->send(new SendAdminDonationConfirmation($donation));
                 }
 
-                return \stdClass::class;
+            } else {
+                Donation::where('id', $_id)->update([
+                    'status' => $status
+                ]);
+
+                $donation = Donation::where('id', $_id)->first();
+
+                if ($status === Order::SETTLE) {
+                    $this->send(new SendAdminDonationConfirmation($donation));
+                }
             }
+
+            return \stdClass::class;
         }
 
         abort(403);
