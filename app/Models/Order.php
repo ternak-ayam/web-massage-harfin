@@ -6,6 +6,7 @@ use App\Models\Traits\GetPrice;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Order extends Model
 {
@@ -47,6 +48,15 @@ class Order extends Model
     public function hasDp()
     {
         return $this->down_payment > 0;
+    }
+
+    public function getPaymentMethod()
+    {
+        if($this->channel === self::XENDIT) {
+            return "OVO/DANA";
+        }
+
+        return Str::upper($this->channel);
     }
 
     public function needDp($channel = null)
