@@ -40,8 +40,6 @@ trait XenditWebhookHandler
                     'status' => $status,
                 ]);
 
-                $order = Order::where('order_id', $_id)->first();
-
                 $this->send(new SendAdminOrderConfirmation($order));
                 $order->buyer->notify(new SendPaymentSuccessOrderConfirmation($order));
             } else {
@@ -49,7 +47,7 @@ trait XenditWebhookHandler
                     'status' => $status
                 ]);
 
-                $donation = Order::find($_id)->first();
+                $donation = Order::where('order_id', $_id)->first();
 
                 $this->send(new SendAdminOrderConfirmation($donation));
             }
