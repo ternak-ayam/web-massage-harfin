@@ -34,7 +34,7 @@ class PesananController extends Controller
             'user' => $request->user(),
             'vouchers' => $request->user()->vouchers()->where('quantity', '>', 0)->get(),
             'cities' => json_decode($cities, true)['provinsi'],
-            'notifications' => auth()->user()->unreadNotifications()->paginate(5)
+            'notifications' => auth()->user()->unreadNotifications
         ]);
     }
 
@@ -42,7 +42,7 @@ class PesananController extends Controller
     {
         return view('pesanan.after-order', [
             'order' => $order,
-            'notifications' => auth()->user()->unreadNotifications()->paginate(5)
+            'notifications' => auth()->user()->unreadNotifications
         ]);
     }
 

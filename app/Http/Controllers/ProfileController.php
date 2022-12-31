@@ -12,7 +12,7 @@ class ProfileController extends Controller
     {
         return view('profile.index', [
             'user' => \request()->user(),
-            'notifications' => auth()->user()->unreadNotifications()->paginate(5)
+            'notifications' => auth()->user()->unreadNotifications
         ]);
     }
 

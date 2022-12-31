@@ -27,7 +27,7 @@
                                     <span class="text-sm">Data masih kosong.</span>
                                 </div>
                             @endforelse
-                            {{ $notifications->links() }}
+{{--                            {{ $notifications->links() }}--}}
                         </div>
                         <div class="block bg-[#0BA2D4] text-white text-center py-2 text-base">Kotak Masuk</div>
                     </div>

@@ -20,7 +20,7 @@ class PemesananController extends Controller
         return view('pemesanan.index', [
             'orders' => $orders,
             'type'  => $type,
-            'notifications' => auth()->user()->unreadNotifications()->paginate(5)
+            'notifications' => auth()->user()->unreadNotifications
         ]);
     }
 
@@ -28,7 +28,7 @@ class PemesananController extends Controller
     {
         return view('pemesanan.show', [
             'order' => $order,
-            'notifications' => auth()->user()->unreadNotifications()->paginate(5)
+            'notifications' => auth()->user()->unreadNotifications
         ]);
     }
 }

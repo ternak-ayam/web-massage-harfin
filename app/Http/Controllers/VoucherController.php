@@ -10,7 +10,7 @@ class VoucherController extends Controller
     {
         return view('voucher.index', [
             'vouchers' => \request()->user()->vouchers()->where('quantity', '>', 0)->get(),
-            'notifications' => auth()->user()->unreadNotifications()->paginate(5)
+            'notifications' => auth()->user()->unreadNotifications
         ]);
     }
 }

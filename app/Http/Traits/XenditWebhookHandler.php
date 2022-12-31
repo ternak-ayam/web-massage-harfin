@@ -48,12 +48,16 @@ trait XenditWebhookHandler
                     $this->send(new SendAdminOrderConfirmation($order));
                     $this->send(new SendInvoiceToAdmin($order));
                     $order->buyer->notify(new SendPaymentSuccessOrderConfirmation($order));
+
+                    return "Success";
                 } else {
                     Donation::where('id', $_id)->update([
                         'status' => $status
                     ]);
 
                     $this->send(new SendAdminOrderConfirmation($order));
+
+                    return "Success";
                 }
             }
         }

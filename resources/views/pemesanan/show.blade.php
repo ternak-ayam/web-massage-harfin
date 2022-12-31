@@ -136,7 +136,7 @@
                         </div>
                         <div>
                             <p class="text-green-500 text-base text-right">
-                                -{{ $order->getPaidFormattedPrice() }}
+                                {{ $order->getPaidFormattedPrice() }}
                             </p>
                         </div>
                     </div>
@@ -170,7 +170,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    @if($order->canCancel() && !$order->isCancel())
+                    @if($order->canCancel() && !$order->isCancel() && !$order->isDone())
                         @include('components.button.danger-a', ['title' => 'Batalkan Pesanan', 'href' => route('pesanan.cancel', $order->order_id)])
                     @endif
                     @if($order->isPending())
