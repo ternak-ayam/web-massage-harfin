@@ -44,7 +44,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/pesanan/{order:order_id}/cancel', [\App\Http\Controllers\PesananController::class, 'cancel'])->name('pesanan.cancel');
     Route::get('/pesanan/{order:order_id}/done', [\App\Http\Controllers\PesananController::class, 'done'])->name('pesanan.done');
     Route::post('/pesanan', [\App\Http\Controllers\PesananController::class, 'store'])->name('pesanan.store');
-    Route::post('/xendit/payment/handle', [\App\Http\Controllers\PesananController::class, 'handleXendit'])->name('payment.handle.notification');
 
     Route::post('/donation/pay', [\App\Http\Controllers\DonationController::class, 'pay'])->name('donation.pay');
 
@@ -53,5 +52,7 @@ Route::middleware('auth')->group(function () {
 
 Route::post('/register/otp', [\App\Http\Controllers\Auth\RegisterController::class, 'checkOtp'])->name('register.checkOtp');
 Route::post('/login/otp', [\App\Http\Controllers\Auth\LoginController::class, 'checkOtp'])->name('login.checkOtp');
+
+Route::post('/xendit/payment/handle', [\App\Http\Controllers\PesananController::class, 'handleXendit'])->name('payment.handle.notification');
 
 Auth::routes();
