@@ -43,9 +43,9 @@ trait XenditWebhookHandler
                 $this->send(new SendAdminOrderConfirmation($order));
                 $order->buyer->notify(new SendPaymentSuccessOrderConfirmation($order));
             } else {
-                Donation::where('id', $_id)->update([
-                    'status' => $status
-                ]);
+//                Donation::where('id', $_id)->update([
+//                    'status' => $status
+//                ]);
 
                 $this->send(new SendAdminOrderConfirmation($order));
             }
