@@ -4,6 +4,7 @@ namespace App\Http\Traits;
 
 use App\Models\Donation;
 use App\Models\Order;
+use App\Notifications\SendAdminDonationConfirmation;
 use App\Notifications\SendAdminOrderConfirmation;
 use App\Notifications\SendInvoiceToAdmin;
 use App\Notifications\SendPaymentSuccessOrderConfirmation;
@@ -54,7 +55,9 @@ trait XenditWebhookHandler
                         'status' => $status
                     ]);
 
-                    $this->send(new SendAdminOrderConfirmation($order));
+                    $donation = Donation::where('id', $_id)->first();
+
+                    $this->send(new SendAdminDonationConfirmation($donation));
 
                 }
 
