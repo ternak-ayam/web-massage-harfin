@@ -25,6 +25,7 @@ trait XenditWebhookHandler
 
             $_id = $arrRequestInput['external_id'];
             $_status = $arrRequestInput['status'];
+            $_paid_amount = $arrRequestInput['paid_amount'];
 
             if (in_array($_status, ['PAID', 'SETTLED'])) {
                 $status = Order::SETTLE;
@@ -36,20 +37,24 @@ trait XenditWebhookHandler
                 $status = Order::CANCEL;
             }
 
-            if($order = Order::where('order_id', $_id)->first()) {
-                Order::where('order_id', $_id)->update([
-                    'status' => $status,
-                ]);
+            if ($status === Order::SETTLE) {
+                if ($order = Order::where('order_id', $_id)->first()) {
+                    Order::where('order_id', $_id)->update([
+                        'status' => $status,
+                        'remain' => $order->total - $_paid_amount,
+                        'paid' => $_paid_amount
+                    ]);
 
-                $this->send(new SendAdminOrderConfirmation($order));
-                $this->send(new SendInvoiceToAdmin($order));
-                $order->buyer->notify(new SendPaymentSuccessOrderConfirmation($order));
-            } else {
-                Donation::where('id', $_id)->update([
-                    'status' => $status
-                ]);
+                    $this->send(new SendAdminOrderConfirmation($order));
+                    $this->send(new SendInvoiceToAdmin($order));
+                    $order->buyer->notify(new SendPaymentSuccessOrderConfirmation($order));
+                } else {
+                    Donation::where('id', $_id)->update([
+                        'status' => $status
+                    ]);
 
-                $this->send(new SendAdminOrderConfirmation($order));
+                    $this->send(new SendAdminOrderConfirmation($order));
+                }
             }
         }
 
