@@ -35,6 +35,8 @@ trait XenditWebhookHandler
                 $status = Order::CANCEL;
             }
 
+            return $status;
+
             if($order = Order::where('order_id', $_id)->first()) {
                 Order::where('order_id', $_id)->update([
                     'status' => $status,
@@ -43,9 +45,9 @@ trait XenditWebhookHandler
                 $this->send(new SendAdminOrderConfirmation($order));
                 $order->buyer->notify(new SendPaymentSuccessOrderConfirmation($order));
             } else {
-//                Donation::where('id', $_id)->update([
-//                    'status' => $status
-//                ]);
+                Donation::where('id', $_id)->update([
+                    'status' => $status
+                ]);
 
                 $this->send(new SendAdminOrderConfirmation($order));
             }
