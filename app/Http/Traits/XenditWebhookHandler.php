@@ -58,7 +58,6 @@ trait XenditWebhookHandler
                     $donation = Donation::where('id', $_id)->first();
 
                     $this->send(new SendAdminDonationConfirmation($donation));
-
                 }
 
                 return \stdClass::class;
