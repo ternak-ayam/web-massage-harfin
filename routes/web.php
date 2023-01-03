@@ -1,8 +1,10 @@
 <?php
 
 use App\Models\AdditionalService;
+use App\Models\Admin;
 use App\Models\Service;
 use App\Models\ServiceDetail;
+use App\Notifications\SendInvoiceToAdmin;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
@@ -54,5 +56,14 @@ Route::post('/register/otp', [\App\Http\Controllers\Auth\RegisterController::cla
 Route::post('/login/otp', [\App\Http\Controllers\Auth\LoginController::class, 'checkOtp'])->name('login.checkOtp');
 
 Route::post('/xendit/payment/handle', [\App\Http\Controllers\PesananController::class, 'handleXendit'])->name('payment.handle.notification');
+
+Route::get('test/inv', function () {
+    $order = \App\Models\Order::where('status', \App\Models\Order::PENDING)->first();
+    $admins = Admin::all();
+
+    foreach ($admins as $admin) {
+        $admin->notify(new \App\Notifications\SendAdminOrderConfirmation($order));
+    }
+});
 
 Auth::routes();

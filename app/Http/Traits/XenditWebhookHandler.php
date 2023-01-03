@@ -47,7 +47,6 @@ trait XenditWebhookHandler
 
                 if ($status === Order::SETTLE) {
                     $this->send(new SendAdminOrderConfirmation($order));
-                    $this->send(new SendInvoiceToAdmin($order));
                     $order->buyer->notify(new SendPaymentSuccessOrderConfirmation($order));
                 }
 
