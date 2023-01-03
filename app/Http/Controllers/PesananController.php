@@ -74,6 +74,10 @@ class PesananController extends Controller
     {
         $order = new Order();
 
+        if(blank($request->service_details)) {
+            return back()->withErrors(['status' => 'Wajib memilih jasa!']);
+        }
+
         $discount = 0;
         $downPayment = 0;
         $additionalServiceTotalPrice = 0;
@@ -82,8 +86,8 @@ class PesananController extends Controller
 
         $voucher = Voucher::where([['code', $request->voucher], ['user_id', $request->user()->id]])->first();
 
-        $serviceDetails = ServiceDetail::whereIn('id', $request->service_details)->get();
-        $additionalServices = AdditionalService::whereIn('id', $request->additional_services)->get();
+        $serviceDetails = ServiceDetail::whereIn('id', (array) $request->service_details)->get();
+        $additionalServices = AdditionalService::whereIn('id', (array) $request->additional_services)->get();
 
         foreach ($additionalServices as $key => $additionalService) {
             $additionalServiceTotalPrice += $additionalService->price * $request->quantity[$additionalService->id];

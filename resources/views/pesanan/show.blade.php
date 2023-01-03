@@ -34,28 +34,27 @@
             let quantity = 0;
 
             item.addEventListener("change", (e) => {
-                if (document.getElementById("additional_services_bg" + i).classList.contains("bg-red-200")) {
-                    document.getElementById("additional_services_bg" + i).classList.remove("bg-red-200");
-                    price = 0;
-                    document.getElementById("additional_services_quantity" + i).value = 0;
-                } else {
-                    document.getElementById("additional_services_bg" + i).classList.add("bg-red-200");
-                    quantity = 1;
-                    price = e.target.getAttribute("data-price");
-                    document.getElementById("additional_services_quantity" + i).value = quantity;
-                }
-
-                additionalServices[i] = {
-                    price: parseInt(price),
-                    quantity: quantity,
-                    id: parseInt(e.target.value),
-                };
-
-                displayTotal();
+                selectAdditionalService(price, i, quantity, e);
             });
 
             document.getElementById("increment" + i).addEventListener("click", () => {
                 quantity = document.getElementById("additional_services_quantity" + i).value;
+
+                if (!additionalServices[i]) {
+                    document.getElementById("additional_services_bg" + i).classList.add("bg-red-200");
+                    price = item.getAttribute("data-price");
+                    document.getElementById("additional_services_quantity" + i).value = quantity;
+
+                    additionalServices[i] = {
+                        price: parseInt(price),
+                        quantity: parseInt(quantity) + 1,
+                        id: parseInt(item.value),
+                    };
+
+                    displayTotal();
+
+                    return false;
+                }
 
                 additionalServices[i] = {
                     ...additionalServices[i],
@@ -73,10 +72,43 @@
                     quantity: parseInt(quantity) - 1,
                 };
 
+                if (additionalServices[i].quantity === 0) {
+                    delete additionalServices[i];
+
+                    if (document.getElementById("additional_services_bg" + i).classList.contains("bg-red-200")) {
+                        document.getElementById("additional_services_bg" + i).classList.remove("bg-red-200");
+                        price = 0;
+                        document.getElementById("additional_services_quantity" + i).value = 0;
+                    }
+
+                    displayTotal();
+                }
+
                 displayTotal();
             });
 
         });
+
+        const selectAdditionalService = (price, i, quantity, e) => {
+            if (document.getElementById("additional_services_bg" + i).classList.contains("bg-red-200")) {
+                document.getElementById("additional_services_bg" + i).classList.remove("bg-red-200");
+                price = 0;
+                document.getElementById("additional_services_quantity" + i).value = 0;
+            } else {
+                document.getElementById("additional_services_bg" + i).classList.add("bg-red-200");
+                quantity = 1;
+                price = e.target.getAttribute("data-price");
+                document.getElementById("additional_services_quantity" + i).value = quantity;
+            }
+
+            additionalServices[i] = {
+                price: parseInt(price),
+                quantity: quantity,
+                id: parseInt(e.target.value),
+            };
+
+            displayTotal();
+        }
 
         const displayTotal = () => {
             let subtotal = 0;
@@ -101,7 +133,7 @@
             let chosenTime = (new Date(orderDate.value + " " + orderTime.value)).getTime();
             let now = new Date().getTime();
 
-            if(chosenTime < (now + 7200000)) {
+            if (chosenTime < (now + 7200000)) {
                 alert("Waktu harus lebih lewat 2 jam dari waktu sekarang");
                 return false;
             }
@@ -119,7 +151,15 @@
                 <h2 class="mb-2 text-base">Pilih Durasi Pengerjaan</h2>
             @endif
         </div>
-        <form action="{{ route('pesanan.store') }}" id="form-submit" method="post" onsubmit="event.preventDefault(); return validateMyForm();">
+
+        @error('status')
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <span class="block sm:inline">{{ $message }}</span>
+        </div>
+        @enderror
+
+        <form action="{{ route('pesanan.store') }}" id="form-submit" method="post"
+              onsubmit="event.preventDefault(); return validateMyForm();">
             @csrf
             <input type="hidden" name="service" value="{{ $service->slug }}">
             <div class="w-full">
@@ -248,7 +288,7 @@
                         @include('components.field.select', ['label' => 'components.field.label', 'title' => 'Lokasi Kota', 'name' => 'city', 'data' => $cities])
                     </div>
                     <div class="my-2">
-                        @include('components.field.text-area', ['label' => 'components.field.label', 'title' => 'Alamat Lengkap', 'name' => 'address',])
+                        @include('components.field.text-area', ['label' => 'components.field.label', 'title' => 'Alamat Lengkap', 'name' => 'address', 'required' => true])
                     </div>
                     <div class="my-2">
                         @include('components.field.input-text', ['label' => 'components.field.label', 'title' => 'Nama', 'value' => $user->name, 'name' => 'user_name'])
