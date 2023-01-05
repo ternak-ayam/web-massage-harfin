@@ -163,7 +163,8 @@
                                 @if($order->channel === \App\Models\Order::XENDIT)
                                     OVO/DANA
                                 @else
-                                    {{ Str::upper($order->channel) }} <br> <span class="text-red-600 text-xs">(Khusus metode pembayaran COD, Anda harus deposit uang jaminan sebesar {{ 'Rp' . number_format(env('DOWN_PAYMENT_AMOUNT'), 0, ',', '.') }})</span>
+                                    {{ Str::upper($order->channel) }}
+{{--                                    <br><span class="text-red-600 text-xs">(Khusus metode pembayaran COD, Anda harus deposit uang jaminan sebesar {{ 'Rp' . number_format(env('DOWN_PAYMENT_AMOUNT'), 0, ',', '.') }})</span>--}}
                                 @endif
                             </p>
                         </div>
@@ -173,14 +174,15 @@
                     @if($order->canCancel() && !$order->isCancel() && !$order->isDone())
                         @include('components.button.danger-a', ['title' => 'Batalkan Pesanan', 'href' => route('pesanan.cancel', $order->order_id)])
                     @endif
-                    @if($order->isPending())
-                        @include('components.button.success-a', ['title' => $order->channel === \App\Models\Order::XENDIT ? 'Bayar' : 'Bayar uang jaminan', 'href' => $order->payment_path, 'target' =>'_blank'])
+                    {{--                    @if($order->isPending())--}}
+                    {{--                        @include('components.button.success-a', ['title' => $order->channel === \App\Models\Order::XENDIT ? 'Bayar' : 'Bayar uang jaminan', 'href' => $order->payment_path, 'target' =>'_blank'])--}}
+                    {{--                    @endif--}}
+                    {{--                    @if($order->isSettle())--}}
+                    @if(!$order->isCancel() && !$order->isDone())
+                        @include('components.button.success-a', ['title' => 'Selesai', 'href' => route('pesanan.done', $order->order_id)])
                     @endif
-                    @if($order->isSettle())
-                        <div class="mt-4">
-                            @include('components.button.success-a', ['title' => 'Selesai', 'href' => route('pesanan.done', $order->order_id)])
-                        </div>
-                    @endif
+
+                    {{--                    @endif--}}
                 </div>
             </div>
         </div>

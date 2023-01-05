@@ -102,6 +102,8 @@ class PesananController extends Controller
             } else if($voucher->amount_type === Voucher::DOUBLE) {
                 $discount = $voucher->amount;
             }
+
+            $voucher->decrement('quantity');
         }
 
         if ($order->needDp($request->channel)) {

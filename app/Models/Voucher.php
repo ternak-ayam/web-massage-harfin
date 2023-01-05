@@ -11,10 +11,12 @@ class Voucher extends Model
 
     protected $fillable = [
         'user_id',
+        'code',
         'name',
         'description',
         'type',
         'quantity',
+        'image',
         'amount_type',
         'amount',
         'max_amount',
@@ -22,6 +24,8 @@ class Voucher extends Model
         'used_at'
     ];
 
-    const PERCENT = "percent";
-    const DOUBLE  = "double";
+    const PERCENT = "PERCENT";
+    const DOUBLE  = "DOUBLE";
+
+    const PERSONAL  = "PERSONAL";
 }

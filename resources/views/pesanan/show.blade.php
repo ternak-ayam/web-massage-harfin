@@ -154,7 +154,7 @@
 
         @error('status')
         <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-            <span class="block sm:inline">{{ $message }}</span>
+{{--            <span class="block sm:inline">{{ $message }}</span>--}}
         </div>
         @enderror
 
@@ -300,15 +300,14 @@
                         @include('components.field.text-area', ['label' => 'components.field.label', 'title' => 'Catatan Tambahan', 'name' => 'notes'])
                     </div>
                     <div class="my-2">
-                        <label for="" class="font-semibold text-lg">Metode Pembayaran</label>
-                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'name' => 'channel', 'title' => 'COD/Cash (Diwajibkan deposit sebesar Rp20.000 untuk jaminan)', 'id' => 'payment_method_cod', 'value' => 'cod'])
-                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'name' => 'channel', 'title' => 'OVO/DANA', 'id' => 'payment_method_xendit', 'value' => 'xendit'])
+                        <label class="font-semibold text-lg">Metode Pembayaran</label>
+                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'name' => 'channel', 'title' => 'COD/Cash', 'id' => 'payment_method_cod', 'value' => 'cod'])
+{{--                        @include('components.field.radio', ['label' => 'components.field.label-inline', 'name' => 'channel', 'title' => 'OVO/DANA', 'id' => 'payment_method_xendit', 'value' => 'xendit'])--}}
                     </div>
                     <div class="my-2">
                         <label class="block mb-2 text-sm text-black">Voucher</label>
                         <select name="voucher"
                                 class="bg-gray-50 border focus:outline-none focus:border-[#0BA2D4] border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 disabled:bg-gray-100">
-                            <option value="">Pilih Voucher</option>
                             @foreach($vouchers as $voucher)
                                 <option value="{{ $voucher->code }}">{{ $voucher->name }}</option>
                             @endforeach

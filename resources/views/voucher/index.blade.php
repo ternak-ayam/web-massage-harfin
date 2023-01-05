@@ -7,7 +7,7 @@
         <div class="w-full lg:flex">
             <div
                 class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-                style="background-image: url('https://awsimages.detik.net.id/community/media/visual/2022/02/24/ilustrasi-spa_169.jpeg?w=700&q=90')"
+                style="background-image: url({{ $voucher->image }})"
                 title="Mountain">
             </div>
             <div
