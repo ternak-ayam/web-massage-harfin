@@ -47,7 +47,8 @@ class SendOrderConfirmationNotification extends Notification
     public function toWhatsApp($notifiable)
     {
         return (new WhatsAppMessage)
-            ->content("Order anda {$this->order->order_id} dengan total pembayaran {$this->order->getTotalFormattedPrice()} telah berhasil dibuat. Segera lakukan pembayaran pada link berikut {$this->payment_url}.  Terima kasih");
+            ->content("Order anda {$this->order->id} dengan total pembayaran {$this->order->total} telah berhasil dibuat. Segera lakukan pembayaran pada link berikut {$this->order->path}.
+Terima kasih");
     }
 
     /**

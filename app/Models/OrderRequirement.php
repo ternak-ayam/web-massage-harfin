@@ -43,16 +43,16 @@ class OrderRequirement extends Model
 
     public function getCustomerSex()
     {
-        return $this->customer_sex === 0 ? "Wanita" : "Pria";
+        return $this->customer_sex == 0 ? "Wanita" : "Pria";
     }
 
     public function getTherapistSex()
     {
-        return $this->therapist_sex === 0 ? "Wanita" : "Pria";
+        return $this->therapist_sex == 0 ? "Wanita" : "Pria";
     }
 
     public function getStyleSex()
     {
-        return $this->style_type_sex === 0 ? "Wanita" : "Pria";
+        return $this->style_type_sex == 0 ? "Wanita" : "Pria";
     }
 }
