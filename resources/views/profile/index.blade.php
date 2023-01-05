@@ -19,7 +19,7 @@
                 <div class="text-center">
                     @include('components.button.danger-button', ['title' => 'Logout', 'formaction' => route('logout'), 'type' => 'submit'])
                     <div>
-                        <a href="#" class="text-sm text-blue-500 hover:underline">Bantuan?</a>
+                        <a href="https://line.me/ti/p/yfZaEG3x14" target="_blank" class="text-sm text-blue-500 hover:underline">Bantuan?</a>
                     </div>
                 </div>
             </div>

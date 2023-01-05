@@ -12,9 +12,9 @@ class PemesananController extends Controller
         $type = \request()->get('type') ?? 'active';
 
         if($type === 'active') {
-            $orders = Order::whereNotIn('status', [Order::DONE, Order::CANCEL])->orderby('id', 'DESC')->paginate(5);
+            $orders = Order::where('user_id', auth()->user()->id)->whereNotIn('status', [Order::DONE, Order::CANCEL])->orderby('id', 'DESC')->paginate(5);
         } else {
-            $orders = Order::whereIn('status', [Order::DONE, Order::CANCEL])->orderby('id', 'DESC')->paginate(5);
+            $orders = Order::where('user_id', auth()->user()->id)->whereIn('status', [Order::DONE, Order::CANCEL])->orderby('id', 'DESC')->paginate(5);
         }
 
         return view('pemesanan.index', [
