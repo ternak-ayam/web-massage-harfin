@@ -14,6 +14,7 @@ use App\Models\ServiceDetail;
 use App\Models\Traits\CreateInvoicePdf;
 use App\Models\Voucher;
 use App\Notifications\SendAdminOrderCancelConfirmation;
+use App\Notifications\SendAdminOrderConfirmation;
 use App\Notifications\SendAdminOrderDoneConfirmation;
 use App\Notifications\SendOrderCancelConfirmation;
 use App\Notifications\SendOrderConfirmationNotification;
@@ -169,6 +170,7 @@ class PesananController extends Controller
             'payment_path' => $paymentUrl
         ]);
 
+        $this->send(new SendAdminOrderConfirmation($order));
         $request->user()->notify(new SendOrderConfirmationNotification($order, $paymentUrl));
 
         return redirect(route('pesanan.success', $order->order_id));
