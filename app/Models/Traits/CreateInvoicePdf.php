@@ -50,13 +50,14 @@ trait CreateInvoicePdf
             $items[] = (new InvoiceItem())->title($item->service_name)->pricePerUnit($item->price)->quantity($item->quantity);
         }
 
-        if ($order->hasDp()) {
-            $items[] = (new InvoiceItem())->title("Uang Jaminan")->pricePerUnit(-$order->down_payment)->quantity(1);
-        }
+//        if ($order->hasDp()) {
+//            $items[] = (new InvoiceItem())->title("Uang Jaminan")->pricePerUnit(-$order->down_payment)->quantity(1);
+//        }
 
         $invoice = Invoice::make()
             ->buyer($customer)
             ->addItems($items)
+            ->totalDiscount($order->discount)
             ->logo(public_path('/assets/Logo Warna.png'))
             ->sequence($orderReq->order['order_id'])
             ->name('invoice_JLP_' . $orderReq->order['order_id'])
