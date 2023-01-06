@@ -15,7 +15,7 @@
             <h1 class="text-3xl font-semibold">Pilihan</h1>
         </div>
     </div>
-    <div class="container flex justify-center m-auto mt-8 mb-8 gap-8 flex-wrap">
+    <div class="container flex justify-center m-auto mt-8 mb-8 gap-4 flex-wrap">
         <a href="{{ route('pesanan.show', 'hair-care') }}">
             <div class="bg-[#0BA2D4] p-2 rounded-full flex justify-center flex-col">
                 <img src="{{ asset('assets/icon/hair-cutting.png')}}" class="scale-50" alt="">
