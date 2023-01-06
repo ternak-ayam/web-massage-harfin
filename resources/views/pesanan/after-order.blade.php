@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    @if($order->canCancel())
+                    @if($order->canCancel() && !$order->isDone() && !$order->isCancel())
                         @include('components.button.danger-a', ['title' => 'Batalkan Pesanan', 'href' => route('pesanan.cancel', $order->order_id)])
                     @endif
 
