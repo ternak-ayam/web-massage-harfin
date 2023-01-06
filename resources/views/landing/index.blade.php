@@ -4,11 +4,11 @@
     @include('layouts.navbar')
     @include('layouts.banner')
 
-    <div class="w-full m-auto italic px-4 py-1">
-        <marquee behavior="" direction="">Selamat datang @auth
+    <div class="w-full m-auto italic px-4 pt-2 bg-blue-300 wordart">
+        <marquee behavior="" direction=""><p class="md:text-lg text-base text-white preview">Selamat datang @auth
                 {{ auth()->user()->name }}
             @endauth di JLIFE Pro, selamat menikmati layanan jasa di JLIFE Pro
-        </marquee>
+            </p></marquee>
     </div>
     <div class="border-dashed border-b border-sky-500 p-2 mt-12 pb-4">
         <div class="container m-auto">
