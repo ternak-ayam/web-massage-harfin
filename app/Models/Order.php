@@ -66,7 +66,7 @@ class Order extends Model
 
     public function canCancel()
     {
-        return $this->cancel_expired->timestamp > now()->timestamp;
+        return $this->cancel_expired->timestamp <= now()->timestamp;
     }
 
     public function isSettle()

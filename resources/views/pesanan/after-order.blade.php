@@ -105,21 +105,15 @@
                             </div>
                         </div>
                         <div class="mt-4 text-base text-red-600">
-                            @if(! $order->isCancel())
-                                @if($order->canCancel())
-                                    Anda hanya dapat membatalkan pesanan dalam <span class="minute">3</span> Menit
-                                @elseif(! $order->isCancel())
-                                    Anda tidak dapat membatalkan pesanan ini
-                                @endif
+                            @if(! $order->canCancel())
+                                Anda tidak dapat membatalkan pesanan dalam <span id="countdown" class="minute"></span> Menit
                             @endif
                         </div>
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    @if(! $order->isCancel())
-                        @if($order->canCancel())
-                            @include('components.button.danger-a', ['title' => 'Batalkan Pesanan', 'href' => route('pesanan.cancel', $order->order_id)])
-                        @endif
+                    @if($order->canCancel())
+                        @include('components.button.danger-a', ['title' => 'Batalkan Pesanan', 'href' => route('pesanan.cancel', $order->order_id)])
                     @endif
 
                     @include('components.button.success-a', ['title' => 'Lihat Pesanan', 'href' => route('pemesanan.show', $order->order_id)])
@@ -132,4 +126,35 @@
         </div>
     </form>
     @include('layouts.navbottom')
+    <script>
+        // Set the date we're counting down to
+        let countDownDate = parseInt("{{ $order->cancel_expired->timestamp }}") * 1000;
+
+        // Update the count down every 1 second
+        let x = setInterval(function() {
+
+            // Get today's date and time
+            let now = Math.round(new Date().getTime());
+
+            // Find the distance between now and the count down date
+            let distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Output the result in an element with id="countdown"
+            if((minutes >= 0) || (seconds >= 0)) {
+                document.getElementById("countdown").innerHTML = minutes + " menit " + seconds + " detik ";
+            }
+
+            // If the count down is over, write some text
+            if (distance <= 1) {
+                clearInterval(x);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000)
+            }
+        }, 1000);
+    </script>
 @endsection

@@ -131,7 +131,7 @@
 
         const validateMyForm = () => {
             let chosenTime = (new Date(orderDate.value + " " + orderTime.value)).getTime();
-            let now = new Date().getTime();
+            let now = new Date(orderDate.value + " " + new Date().getHours()+":"+new Date().getMinutes()).getTime();
 
             if (chosenTime < (now + 7200000)) {
                 alert("Waktu harus lebih lewat 2 jam dari waktu sekarang");
