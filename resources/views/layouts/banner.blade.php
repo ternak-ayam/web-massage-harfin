@@ -18,7 +18,7 @@
     <div class="carousel-inner relative w-full overflow-hidden">
         <div class="carousel-item active float-left w-full p-4">
             <img
-                src="{{ asset('assets/banner_utama.jpg') }}"
+                src="{{ asset('assets/banner_utama.png') }}"
                 class="block w-full rounded-lg"
                 alt="Wild Landscape"
             />
