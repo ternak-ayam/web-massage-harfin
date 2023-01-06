@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name=”robots” content="index, follow">
+    <meta name=”keywords” content="massage, reflexology, haircare, haircut, layanan haircare jakarta, layanan haircut, layanan haircut jakarta, layanan massage jakarta layanan massage, layanan relfexology jakarta, layanan reflexology, layanan homecare, perawatan jakarta, perawatan diri, bodycare, body massage, hairdry, haircut kids, haircut female, haircut male">
+    <meta name="description" content="{{ config('app.name') }} adalah platform yang menyediakan layanan berupa massage, haircare, haircut dan juga reflexology yang berlokasi di DKI Jakarta">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>@yield('title') - {{ config('app.name') }}</title>
+    <title>@yield('title') - {{ config('app.name') }} | Layanan Haircare, Haircut, Massage & Reflexology Jakarta</title>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     <link href='{{ asset('css/style.css') }}' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
