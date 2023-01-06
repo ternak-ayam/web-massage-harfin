@@ -17,7 +17,8 @@ class OtpService {
             return 403;
         }
 
-        $token = implode('', $request->token);
+//        $token = implode('', $request->token);
+        $token = $request->token;
 
         if((int) $token === $otp->token) {
             $otp->update(['verified_at' => now()]);

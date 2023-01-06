@@ -16,26 +16,28 @@
                     </div>
                     <form method="post" action="{{ route('otp.check', $otp->id) }}">
                         @csrf
-                        <div id="otp" class="flex flex-row justify-center text-center px-2 mt-5">
-                            <input
-                                class="m-2 border h-10 w-10 text-center form-control rounded focus:outline-none focus:border-[#0BA2D4]"
-                                type="text" id="first" name="token[]" maxlength="1"/>
-                            <input
-                                class="m-2 border h-10 w-10 text-center form-control rounded focus:outline-none focus:border-[#0BA2D4]"
-                                type="text" id="second" name="token[]" maxlength="1"/>
-                            <input
-                                class="m-2 border h-10 w-10 text-center form-control rounded focus:outline-none focus:border-[#0BA2D4]"
-                                type="text" id="third" name="token[]" maxlength="1"/>
-                            <input
-                                class="m-2 border h-10 w-10 text-center form-control rounded focus:outline-none focus:border-[#0BA2D4]"
-                                type="text" id="fourth" name="token[]" maxlength="1"/>
-                            <input
-                                class="m-2 border h-10 w-10 text-center form-control rounded focus:outline-none focus:border-[#0BA2D4]"
-                                type="text" id="fifth" name="token[]" maxlength="1"/>
-                            <input
-                                class="m-2 border h-10 w-10 text-center form-control rounded focus:outline-none focus:border-[#0BA2D4]"
-                                type="text" id="sixth" name="token[]" maxlength="1"/>
-                        </div>
+                        <input class="m-2 border-b h-10 text-center form-control focus:border-current focus:ring-0 outline-none"
+                               type="text" id="first" name="token" maxlength="6" autofocus/>
+{{--                        <div id="otp" class="flex flex-row justify-center text-center px-2 mt-5">--}}
+{{--                            <input--}}
+{{--                                class="m-2 border-b h-10 w-10 text-center form-control focus:outline-none focus:border-b-[#0BA2D4]"--}}
+{{--                                type="text" id="first" name="token[]" maxlength="1" autofocus/>--}}
+{{--                            <input--}}
+{{--                                class="m-2 border-b h-10 w-10 text-center form-control focus:outline-none focus:border-b-[#0BA2D4]"--}}
+{{--                                type="text" id="second" name="token[]" maxlength="1"/>--}}
+{{--                            <input--}}
+{{--                                class="m-2 border-b h-10 w-10 text-center form-control focus:outline-none focus:border-b-[#0BA2D4]"--}}
+{{--                                type="text" id="third" name="token[]" maxlength="1"/>--}}
+{{--                            <input--}}
+{{--                                class="m-2 border-b h-10 w-10 text-center form-control focus:outline-none focus:border-b-[#0BA2D4]"--}}
+{{--                                type="text" id="fourth" name="token[]" maxlength="1"/>--}}
+{{--                            <input--}}
+{{--                                class="m-2 border-b h-10 w-10 text-center form-control focus:outline-none focus:border-b-[#0BA2D4]"--}}
+{{--                                type="text" id="fifth" name="token[]" maxlength="1"/>--}}
+{{--                            <input--}}
+{{--                                class="m-2 border-b h-10 w-10 text-center form-control focus:outline-none focus:border-b-[#0BA2D4]"--}}
+{{--                                type="text" id="sixth" name="token[]" maxlength="1"/>--}}
+{{--                        </div>--}}
                         <div class="flex justify-center gap-2">
                             <div class="mt-4">
                                 @include('components.button.danger-button', ['title' => 'Kirim ulang OTP', 'formaction' => route('otp.resend', $otp->id), 'formmethod' => 'post', 'type' => 'submit'])
